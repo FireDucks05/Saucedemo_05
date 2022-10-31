@@ -13,7 +13,6 @@ def test_kate():
     assert True
     browser.quit()
 
-
 # from string import printable
 #
 # print(printable)
