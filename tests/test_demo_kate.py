@@ -15,7 +15,3 @@ def test_kate():
     browser.find_element(By.XPATH, "//a[contains(@href,'https://github.com/SeleniumHQ/')]").click()
     assert True
     browser.quit()
-
-# from string import printable
-#
-# print(printable)
