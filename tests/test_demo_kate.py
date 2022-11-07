@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.service import Service
 
 def test_login_standart():
     options = webdriver.ChromeOptions()
-    options.headless = False
+    options.headless = True
     browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     browser.get('https://www.saucedemo.com/')
     browser.maximize_window()
