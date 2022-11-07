@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.service import Service
 
 def test_kate():
     options = webdriver.ChromeOptions()
-    options.add_argument('--start-maximized')
+    options.add_argument("--window-size=800,600")
     options.add_argument('headless')
     browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     browser.get('https://www.selenium.dev/downloads')
