@@ -8,9 +8,9 @@ from selenium.webdriver.chrome.service import Service
 
 def test_login_standart():
     options = webdriver.ChromeOptions()
-    options.headless = False
-    browser = webdriver.Firefox()
-    # browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    options.headless = True
+    # browser = webdriver.Firefox()
+    browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     # browser = webdriver.Chrome('/Users/sweed/PycharmProjects/SweedScripts/venv/lib/python3.10/site-packages/chromedriver_py/chromedriver_mac_arm64')
     browser.get('https://www.saucedemo.com/')
     browser.maximize_window()
