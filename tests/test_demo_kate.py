@@ -6,12 +6,13 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 
 
-def test_kate():
+def test_login_standart():
     options = webdriver.ChromeOptions()
-    options.headless = True
+    options.headless = False
     browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-    browser.get('https://www.selenium.dev/downloads')
+    browser.get('https://www.saucedemo.com/')
     browser.maximize_window()
-    browser.find_element(By.XPATH, "//a[contains(@href,'https://github.com/SeleniumHQ/')]").click()
-    assert True
+    browser.find_element(By.ID, "user-name").send_keys('standard_user')
+    browser.find_element(By.ID, "password").send_keys('secret_sauce')
+    browser.find_element(By.ID, "login-button").send_keys('secret_sauce')
     browser.quit()
