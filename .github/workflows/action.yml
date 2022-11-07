@@ -2,7 +2,7 @@ name: Saucedemo_05
 
 on:
   push:
-    branches: [ main]
+    branches: [ main, Kate-Sergey-KATE]
   pull_request:
     branches: [ main ]
 
