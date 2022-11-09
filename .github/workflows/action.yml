@@ -8,37 +8,34 @@ on:
 
 
 jobs:
-  linter_name:
-    name: runner/black
+  build:
+
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10"]
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Check files using the black formatter
-        uses: rickstaa/action-black@v1
-        id: action_black
-        with:
-          black_args: ". --exclude .venv"
-      - name: Create Commit
-        if: steps.action_black.outputs.is_formatted == 'true'
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: ":art: Format Python code with psf/black"
-  Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out this repo
-        uses: actions/checkout@v3
-      - name: Setup python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-      - name: Update repo
-        run: sudo apt-get update
-      - name: Install software
-        run: sudo apt-get install -y firefox
-      - name: Firefox version
-        run: firefox --version
-      - name: Install poetry
-        run: curl -sSL https://install.python-poetry.org | python3 -
-      - name: Install dependencies
-        run: poetry install --no-root
+    - uses: actions/checkout@v3
+      id: setup-python
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install poetry
+      uses: snok/install-poetry@v1
+      with:
+        virtualenvs-create: true
+        virtualenvs-in-project: true
+        installer-parallel: true
+
+
+    - name: Install dependencies
+      run: poetry install --no-root
+
+    - name: Run tests
+      run:
+        poetry run pytest -v
+
