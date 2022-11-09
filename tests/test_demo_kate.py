@@ -7,12 +7,13 @@ from selenium.webdriver.chrome.service import Service
 
 
 def test_kate():
-    options = webdriver.ChromeOptions()
-    options.add_argument("--window-size=1600,1080")
-    options.headless = True
-    browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     browser.get('https://www.selenium.dev/downloads')
     browser.find_element(By.XPATH, "//a[contains(@href,'https://github.com/SeleniumHQ/')]").click()
-    assert True
+    assert browser.title in 'Selenium'
     browser.quit()
 
+
+# from string import printable
+#
+# print(printable)
