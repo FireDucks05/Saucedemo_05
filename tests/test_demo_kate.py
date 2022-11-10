@@ -13,3 +13,4 @@ def test_kate_first():
     browser.get('https://www.selenium.dev/downloads')
     browser.find_element(By.XPATH, "//a[contains(@href,'https://github.com/SeleniumHQ/')]").click()
     browser.quit()
+    assert True
