@@ -12,3 +12,5 @@ browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), opt
 link = "https://www.saucedemo.com/"
 browser.get(link)
 
+
+
