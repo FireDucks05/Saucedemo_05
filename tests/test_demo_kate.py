@@ -1,18 +1,27 @@
-from selenium.webdriver.common.by import By
-import pytest
-
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
+
+user_name = 'standard_user'
+password = 'secret_sauce'
 
 
-def test_kate_first_add():
-    options = webdriver.ChromeOptions()
-    options.headless = True
-    browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-    browser.maximize_window()
-    browser.get('https://www.selenium.dev/downloads')
-    browser.find_element(By.XPATH, "//a[contains(@href,'https://github.com/SeleniumHQ/')]").click()
-    browser.quit()
+def setUp(self):
+    service = Service(ChromeDriverManager().install())
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--window-size=1920,1080')
+    self.driver = webdriver.Chrome(service=service, options=chrome_options)
+    self.driver.get('https://www.saucedemo.com/')
 
 
+def tearDown(self):
+    self.driver.quit()
+
+
+def test_TC_001(self):
+    self.driver.find_element(By.ID, 'user-name').send_keys(user_name)
+    self.driver.find_element(By.ID, 'password').send_keys(password)
+    self.driver.find_element(By.ID, 'login-button').click()
+
+    assert 'https://www.saucedemo.com/inventory.html' == self.driver.current_url
