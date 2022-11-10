@@ -13,7 +13,6 @@ def test_kate_first_add():
     browser.maximize_window()
     browser.get('https://www.selenium.dev/downloads')
     browser.find_element(By.XPATH, "//a[contains(@href,'https://github.com/SeleniumHQ/')]").click()
-    assert True
     browser.quit()
 
 
