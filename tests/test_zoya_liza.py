@@ -1,14 +1,19 @@
 from selenium.webdriver.common.by import By
 import pytest
-
+import time
+from webbrowser import BaseBrowser
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 
-driver = webdriver.Chrome(ChromeDriverManager().install())
 HOME_LINK = "https://www.saucedemo.com/"
 INVENTORY_LINK = 'https://www.saucedemo.com/inventory.html'
 login_txt = 'standard_user'
 password_txt = 'secret_sauce'
+
+driver = webdriver.Chrome(ChromeDriverManager().install())
+
+driver.get("https://www.saucedemo.com/")
+time.sleep(5)
 
 
 def test_login():
