@@ -8,6 +8,12 @@ INVENTORY_LINK = 'https://www.saucedemo.com/inventory.html'
 login_txt = 'standard_user'
 password_txt = 'secret_sauce'
 
+
+HOME_LINK__ = "https://www.saucedemo.com/"
+INVENTORY_LINK__ = 'https://www.saucedemo.com/inventory.html'
+login_txt__ = 'standard_user'
+password_txt__ = 'secret_sauce'
+
 HOME_LINK_2 = "https://www.saucedemo.com/"
 INVENTORY_LINK_2 = 'https://www.saucedemo.com/inventory.html'
 login_txt_2 = 'standard_user'
