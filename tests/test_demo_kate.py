@@ -9,6 +9,13 @@ def test_kate():
     options = webdriver.ChromeOptions()
     options.add_argument("--window-size=1200,800")
     options.headless = True
+    njdfbndkf
+    bjdfjnbkvf
     browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     browser.get('https://www.saucedemo.com/')
+
+
+
+
+
     browser.quit()
