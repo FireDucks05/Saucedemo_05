@@ -8,12 +8,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 def test_kate():
     options = webdriver.ChromeOptions()
     options.add_argument("--window-size=1200,800")
-    options.headless = True
-    njdfbndkf
-    bjdfjnbkvf
+    options.headless = False
     browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     browser.get('https://www.saucedemo.com/')
-
 
 
 
