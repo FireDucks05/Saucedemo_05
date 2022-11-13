@@ -11,8 +11,4 @@ def test_kate():
     options.headless = True
     browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     browser.get('https://www.saucedemo.com/')
-    browser.find_element(By.ID, "user-name").send_keys("standard_user")
-    browser.find_element(By.ID, "password").send_keys("secret_sauce")
-    browser.find_element(By.ID, "login-button").click()
-    assert 'inventory' in browser.current_url, 'wrong url'
     browser.quit()
