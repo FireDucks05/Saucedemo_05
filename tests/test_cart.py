@@ -17,7 +17,7 @@ class TestCartClass:
 
     @allure.story('US_002.00')
     @allure.step('TC_002.00.01')
-    @allure.title("Change button text")
+    @allure.title("Change bage when adding")
     def test_change_bage_when_adding(self, browser, url):
         self.login_page.login_ui(POSITIVE_LOGIN_CREDENTIALS[0][0], POSITIVE_LOGIN_CREDENTIALS[0][1])
 
