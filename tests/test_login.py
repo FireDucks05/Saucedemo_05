@@ -1,7 +1,5 @@
-import pytest
-import time
-
 import allure
+import pytest
 
 from constants import POSITIVE_LOGIN_CREDENTIALS, NEGATIVE_LOGIN_CREDENTIALS
 from pages.login_page import LoginPage
