@@ -18,6 +18,7 @@ class TestAuthorizationClass:
         POSITIVE_LOGIN_CREDENTIALS,
         ids=["standart_user", "problem_user", "performance_glitch_user"],
     )
+    @allure.story('US_001.00')
     @allure.title("Positive login")
     def test_login_positive(self, user, password):
         self.login_page.login_ui(user, password)
@@ -25,11 +26,21 @@ class TestAuthorizationClass:
             url="https://www.saucedemo.com/inventory.html"
         )
 
+    @allure.story('US_001.00')
     @allure.title("Negative login")
+    @pytest.mark.xfail()
     def test_login_negative(self):
         self.login_page.login_ui(
             NEGATIVE_LOGIN_CREDENTIALS["user"], NEGATIVE_LOGIN_CREDENTIALS["password"]
         )
-        assert not self.login_page.page_is_open(
+        assert self.login_page.page_is_open(
+            url="https://www.saucedemo.com/inventory.html"
+        )
+
+    @allure.story('US_001.00')
+    @allure.title("Standart_user login")
+    def test_login_standart(self):
+        self.login_page.login_ui(POSITIVE_LOGIN_CREDENTIALS[0][0], POSITIVE_LOGIN_CREDENTIALS[0][1])
+        assert self.login_page.page_is_open(
             url="https://www.saucedemo.com/inventory.html"
         )
