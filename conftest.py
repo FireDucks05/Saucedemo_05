@@ -22,7 +22,7 @@ def browser(request):
     else:
         options = webdriver.ChromeOptions()
         options.add_argument("--window-size=1600,1080")
-        options.headless = True
+        options.headless = False
         browser = webdriver.Chrome(
             service=Service(ChromeDriverManager().install()), options=options
         )

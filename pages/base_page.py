@@ -35,7 +35,7 @@ class BasePage:
             ec.presence_of_element_located(locator)
         )
 
-    def wait_until_visible(self, locator: Tuple, timeout: int = 5):
+    def wait_until_visible(self, locator: Tuple, timeout: int = 5) -> WebElement:
         return WebDriverWait(self.browser, timeout).until(
             ec.visibility_of_element_located(locator)
         )
