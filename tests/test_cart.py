@@ -26,8 +26,8 @@ class TestCartClass:
         with allure.step('step3 changes'):
             self.inventory_page.bage_has_changed()
 
-    @allure.story('US_002.00')
-    @allure.step('TC_002.00.02')
+    @allure.epic('US_002.00')
+    @allure.story('TC_002.00.02')
     @allure.title("Button text after remove")
     def test_change_add_button_text(self, browser, url):
         with allure.step('step1 login'):
