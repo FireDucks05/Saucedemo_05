@@ -42,13 +42,13 @@ def url():
 
 
 def pytest_addoption(parser):
-    parser.addoption("--launch", default="firefox", choices=["chrome", "firefox"])
+    parser.addoption("--launch", default="chrome", choices=["chrome", "firefox"])
 
 
 @pytest.fixture(autouse=True)
 def browser(request):
     launch = request.config.getoption("--launch")
-    options = webdriver.FirefoxOptions()
+    options = webdriver.ChromeOptions()
     options.add_argument("--window-size=1600,1080")
     options.headless = True
     browser = VALID_BROWSERS[launch]()
