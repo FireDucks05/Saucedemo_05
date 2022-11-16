@@ -47,5 +47,18 @@ jobs:
       run:
         poetry run pytest -v --launch=ci
 
+    - name: Create Test Results History
+      uses: PavanMudigonda/allure-html-reporter-azure-website@v1.0
+      with:
+          allure_results: allure-results
+          allure_history: allure-history
+          allure_report: allure-report
+          keep_reports: 15
+          account_name: ${{ secrets.ACCOUNT_NAME }}
+          container: ${{ secrets.CONTAINER }}
+          SAS: ${{ secrets.SAS }}
+
+
+
 
 
