@@ -26,3 +26,6 @@ BROWSER_REMOTE_CAPABILITIES = {
     "version": "107.0",
     "enableVNC": True,
 }
+
+COMMAND_EXECUTOR = {"ci": "http://selenoid-chrome:4444",
+                    "local": "http://localhost:4444/wd/hub"}

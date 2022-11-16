@@ -45,6 +45,7 @@ jobs:
 
     - name: Run tests
       run:
-        poetry run pytest -v
+        poetry run pytest -v --launch=ci
+
 
 
