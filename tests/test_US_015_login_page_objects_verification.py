@@ -1,3 +1,4 @@
+import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
@@ -12,18 +13,18 @@ browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), opt
 link = "https://www.saucedemo.com/"
 browser.get(link)
 
-
-def test_015_username_field_present(browser):
+@pytest.mark.skip
+def test_015_username_field_present():
     login_field = browser.find_element(By.XPATH, "//div[@class = 'form_group'][1]")
     assert login_field
 
 
-def test_015_password_field_present(browser):
+def test_015_password_field_present():
     password_field = browser.find_element(By.XPATH, "//div[@class = 'form_group'][2]")
     assert password_field
 
 
-def test_015_login_button_present(browser):
+def test_015_login_button_present():
     login_button = browser.find_element(By.XPATH, "//input[@id = 'login-button']")
     assert login_button
 
