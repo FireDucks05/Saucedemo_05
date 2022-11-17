@@ -1,7 +1,6 @@
-import pytest
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
 
@@ -13,11 +12,8 @@ def test_kate():
     browser.get('https://www.saucedemo.com/')
 
 
-
-
 user_name = 'standard_user'
 password = 'secret_sauce'
-
 
 
 def test_TC_001():
@@ -32,4 +28,3 @@ def test_TC_001():
     driver.find_element(By.ID, 'login-button').click()
     assert 'https://www.saucedemo.com/inventory.html' == driver.current_url
     driver.quit()
-
