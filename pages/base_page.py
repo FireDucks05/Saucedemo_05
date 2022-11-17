@@ -47,9 +47,13 @@ class BasePage:
         except TimeoutException:
             return False
 
+
     def page_is_open(self, url):
         try:
             self.wait_for_url_to_be(url)
             return True
         except TimeoutException:
             return False
+
+    def elements_are_present(self, locator, timeout: int = 5) :
+        return WebDriverWait(self.browser, timeout).until(ec.presence_of_all_elements_located(locator))

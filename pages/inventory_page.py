@@ -8,6 +8,11 @@ class InventoryPage(BasePage):
     REMOVE_BUTTON = (By.ID, "remove-sauce-labs-bike-light")
     CART_BUTTON = (By.ID, 'shopping_cart_container')
     CART_BAGE = (By.CLASS_NAME, 'shopping_cart_badge')
+    ALL_PRODUCTS = (By.CLASS_NAME, 'inventory_item_name')
+    AZ_BUTTON = (By.XPATH, '//*[@id="header_container"]/div[2]/div[2]/span/select/option[1]')
+    ZA_BUTTON = (By.XPATH, '//*[@id="header_container"]/div[2]/div[2]/span/select/option[2]')
+    ASC_BUTTON = (By.XPATH, '//*[@id="header_container"]/div[2]/div[2]/span/select/option[3]')
+    DESC_BUTTON = (By.XPATH, '//*[@id="header_container"]/div[2]/div[2]/span/select/option[4]')
 
     def add_to_cart(self):
         self.wait_until_clickable(self.ADD_BUTTON).click()
@@ -29,3 +34,21 @@ class InventoryPage(BasePage):
         assert '1' in self.wait_until_visible(
             self.CART_BAGE).text, \
             "Incorrect count"
+
+    def sort_by_AZ(self):
+        self.wait_until_clickable(self.AZ_BUTTON).click()
+
+    def sort_by_ZA(self):
+        self.wait_until_clickable(self.ZA_BUTTON).click()
+
+    def sort_by_ASC(self):
+        self.wait_until_clickable(self.ASC_BUTTON).click()
+
+    def sort_by_DESC(self):
+        self.wait_until_clickable(self.DESC_BUTTON).click()
+
+    def show_sorted_elements(self):
+        sorted_list = []
+        for option in self.elements_are_present(self.ALL_PRODUCTS):
+            sorted_list.append(option.text)
+        return sorted_list
