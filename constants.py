@@ -8,6 +8,8 @@ POSITIVE_LOGIN_CREDENTIALS = [
 
 NEGATIVE_LOGIN_CREDENTIALS = {"user": "locked_out_user", "password": "secret_sauce"}
 
+INFORMATION_DATA = {"first_name": "test_user", "last_name": "test_sauce", "zip": "12345"}
+
 VALID_BROWSERS = {
     "chrome": Chrome,
     "firefox": Firefox,

@@ -1,12 +1,15 @@
 from typing import Tuple
 
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebElement
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
 
 
 class BasePage:
+    CART_BUTTON = (By.CLASS_NAME, 'shopping_cart_link')
+
     def __init__(self, browser, url):
         self.browser = browser
         self.url = url
@@ -55,5 +58,8 @@ class BasePage:
         except TimeoutException:
             return False
 
-    def elements_are_present(self, locator, timeout: int = 5) :
+    def elements_are_present(self, locator, timeout: int = 5):
         return WebDriverWait(self.browser, timeout).until(ec.presence_of_all_elements_located(locator))
+
+    def go_to_cart(self, locator):
+        self.wait_until_clickable(self.CART_BUTTON).click()
