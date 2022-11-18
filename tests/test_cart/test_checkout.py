@@ -1,5 +1,3 @@
-import time
-
 import allure
 import pytest
 
@@ -8,7 +6,6 @@ from pages.cart_page import CartPage
 from pages.checkout_step_one_page import CheckoutStepOnePage
 from pages.checkout_step_two_page import CheckoutStepTwoPage
 from pages.inventory_page import InventoryPage
-from selenium.webdriver.common.by import By
 
 
 class TestCheckoutClass:
@@ -45,32 +42,31 @@ class TestCheckoutClass:
     @allure.epic('UC_007.00')
     @allure.story('TC_007.00.01')
     @allure.title("Invalid message on checkout step")
-    def test_error_message(self, browser, url):
+    def test_error_message_WO_first_name(self, browser, url):
         with allure.step('step1 add to cart'):
             self.inventory_page.add_to_cart()
         with allure.step('step2 go to cart'):
             self.inventory_page.go_to_cart()
-
-        with allure.step('step3 go chekout'):
+        with allure.step('step2 go to cart'):
             self.cart_page.checkout()
-
-        with allure.step('step4 fill information without first name'):
+        with allure.step('step2 go to cart'):
             self.checkout_page.input_your_informarion('', INFORMATION_DATA["last_name"], INFORMATION_DATA["zip"])
-
-        self.checkout_page.error_when_empty_required_fied()
+        with allure.step('step2 go to cart'):
+            self.checkout_page.check_error_message()
 
 
     @allure.epic('UC_007.00')
     @allure.story('TC_007.00.02')
     @allure.title("Invalid message on checkout step ZIP missed")
-    def test_error_message(self, browser, url):
+    def test_error_message_WO_zip(self, browser, url):
         with allure.step('step1 add to cart'):
             self.inventory_page.add_to_cart()
         with allure.step('step2 go to cart'):
             self.inventory_page.go_to_cart()
 
-        with allure.step('step3 go chekout'):
+        with allure.step('step3 go checkout'):
             self.cart_page.checkout()
-
         with allure.step('step4 fill information without first name'):
-            self.checkout_page.input_your_informarion(INFORMATION_DATA["first_name"], INFORMATION_DATA["last_name"],'' )
+            self.checkout_page.input_your_informarion(INFORMATION_DATA["first_name"], INFORMATION_DATA["last_name"], '')
+        with allure.step('step5 check error msg'):
+            self.checkout_page.check_error_message()

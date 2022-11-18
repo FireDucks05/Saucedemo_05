@@ -20,8 +20,8 @@ class CheckoutStepOnePage(BasePage):
     def error_when_empty_required_fied(self):
         assert not self.element_is_present(self.ERROR_MSG)
 
-    def check_post_is_deleted(self, title):
-        assert "Error: reFirst Name is required" == self.wait_until_visible(
+    def check_error_message(self):
+        assert "Error" in self.wait_until_visible(
             self.ERROR_MSG).text, "Error message hasn't been displayed"
-        assert not self.element_is_present((
-        By.XPATH, "//*[contains(text(), 'Error')]")), "Error message hasn been displayed"
+        # assert not self.wait_until_visible(
+        #     self.ERROR_MSG).text, "Error message has been displayed"
