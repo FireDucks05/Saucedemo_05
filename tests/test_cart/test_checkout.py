@@ -47,11 +47,11 @@ class TestCheckoutClass:
             self.inventory_page.add_to_cart()
         with allure.step('step2 go to cart'):
             self.inventory_page.go_to_cart()
-        with allure.step('step2 go to cart'):
+        with allure.step('step3 go checkout'):
             self.cart_page.checkout()
-        with allure.step('step2 go to cart'):
+        with allure.step('step4 fill information without first name'):
             self.checkout_page.input_your_informarion('', INFORMATION_DATA["last_name"], INFORMATION_DATA["zip"])
-        with allure.step('step2 go to cart'):
+        with allure.step('step5 check error msg'):
             self.checkout_page.check_error_message()
 
 
@@ -66,7 +66,7 @@ class TestCheckoutClass:
 
         with allure.step('step3 go checkout'):
             self.cart_page.checkout()
-        with allure.step('step4 fill information without first name'):
+        with allure.step('step4 fill information without zip code'):
             self.checkout_page.input_your_informarion(INFORMATION_DATA["first_name"], INFORMATION_DATA["last_name"], '')
         with allure.step('step5 check error msg'):
             self.checkout_page.check_error_message()
