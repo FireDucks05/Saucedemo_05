@@ -11,29 +11,38 @@ class InventoryPage(BasePage):
     CART_BUTTON = (By.ID, 'shopping_cart_container')
     CART_BAGE = (By.CLASS_NAME, 'shopping_cart_badge')
     ALL_PRODUCTS = (By.CLASS_NAME, 'inventory_item_name')
-    AZ_BUTTON = (By.XPATH, '//*[@id="header_container"]/div[2]/div[2]/span/select/option[1]')
-    ZA_BUTTON = (By.XPATH, '//*[@id="header_container"]/div[2]/div[2]/span/select/option[2]')
-    ASC_BUTTON = (By.XPATH, '//*[@id="header_container"]/div[2]/div[2]/span/select/option[3]')
-    DESC_BUTTON = (By.XPATH, '//*[@id="header_container"]/div[2]/div[2]/span/select/option[4]')
+    AZ_BUTTON = (
+        By.XPATH,
+        '//*[@id="header_container"]/div[2]/div[2]/span/select/option[1]',
+    )
+    ZA_BUTTON = (
+        By.XPATH,
+        '//*[@id="header_container"]/div[2]/div[2]/span/select/option[2]',
+    )
+    ASC_BUTTON = (
+        By.XPATH,
+        '//*[@id="header_container"]/div[2]/div[2]/span/select/option[3]',
+    )
+    DESC_BUTTON = (
+        By.XPATH,
+        '//*[@id="header_container"]/div[2]/div[2]/span/select/option[4]',
+    )
 
     def add_to_cart(self):
         self.wait_until_clickable(self.ADD_BACKPACK_BUTTON).click()
 
     def button_text_before_adding(self):
-        assert 'ADD TO CART' in self.wait_until_visible(
-            self.ADD_BACKPACK_BUTTON).text, \
-            "Incorrect text"
+        assert (
+            'ADD TO CART' in self.wait_until_visible(self.ADD_BACKPACK_BUTTON).text
+        ), "Incorrect text"
 
     def button_text_after_adding(self):
-        assert 'REMOVE' in self.wait_until_visible(
-            self.REMOVE_BACKPACK_BUTTON).text, \
-            "Incorrect text"
-
+        assert (
+            'REMOVE' in self.wait_until_visible(self.REMOVE_BACKPACK_BUTTON).text
+        ), "Incorrect text"
 
     def bage_has_changed(self):
-        assert '1' in self.wait_until_visible(
-            self.CART_BAGE).text, \
-            "Incorrect count"
+        assert '1' in self.wait_until_visible(self.CART_BAGE).text, "Incorrect count"
 
     def sort_by_AZ(self):
         self.wait_until_clickable(self.AZ_BUTTON).click()

@@ -44,5 +44,3 @@ def url():
 
 def pytest_addoption(parser):
     parser.addoption("--launch", default="chrome", choices=["chrome", "firefox", "ci"])
-
-

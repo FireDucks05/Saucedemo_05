@@ -8,4 +8,6 @@ from pages.login_page import LoginPage
 def login_standart(browser, url):
     login_page = LoginPage(browser, url)
     login_page.open_page()
-    login_page.login_ui(POSITIVE_LOGIN_CREDENTIALS[0][0], POSITIVE_LOGIN_CREDENTIALS[0][1])
+    login_page.login_ui(
+        POSITIVE_LOGIN_CREDENTIALS[0][0], POSITIVE_LOGIN_CREDENTIALS[0][1]
+    )

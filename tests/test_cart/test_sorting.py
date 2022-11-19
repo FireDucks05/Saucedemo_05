@@ -6,11 +6,9 @@ from pages.inventory_page import InventoryPage
 
 
 class TestCartClass:
-
     @pytest.fixture(autouse=True)
     def setup(self, browser, url):
         self.inventory_page = InventoryPage(browser, url + 'inventory.html')
-
 
     @allure.epic('US_004.00')
     @allure.story('TC_004.00.01')

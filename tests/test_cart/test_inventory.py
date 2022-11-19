@@ -6,12 +6,10 @@ from pages.inventory_page import InventoryPage
 
 
 class TestCartClass:
-
     @pytest.fixture(autouse=True)
     def setup(self, browser, url):
         self.inventory_page = InventoryPage(browser, url + 'inventory.html')
         self.cart_page = CartPage(browser, url + 'inventory.html')
-
 
     @allure.epic('US_002.00')
     @allure.story('TC_002.00.01')
@@ -45,4 +43,3 @@ class TestCartClass:
             self.cart_page.continue_shopping()
         with allure.step('step4 check page'):
             self.inventory_page.page_is_open(url)
-

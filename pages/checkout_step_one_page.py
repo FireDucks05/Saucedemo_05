@@ -10,7 +10,6 @@ class CheckoutStepOnePage(BasePage):
     CONTINUE_BUTTON = (By.ID, "continue")
     ERROR_MSG = (By.XPATH, "//h3")
 
-
     def input_your_informarion(self, first_name: str, last_name: str, zip: str):
         self.wait_until_clickable(self.FIRST_NAME_BUTTON).send_keys(first_name)
         self.wait_until_clickable(self.LAST_NAME_BUTTON).send_keys(last_name)
@@ -21,7 +20,8 @@ class CheckoutStepOnePage(BasePage):
         assert not self.element_is_present(self.ERROR_MSG)
 
     def error_message_is_present(self):
-        assert "Error" in self.wait_until_visible(
-            self.ERROR_MSG).text, "Error message hasn't been displayed"
+        assert (
+            "Error" in self.wait_until_visible(self.ERROR_MSG).text
+        ), "Error message hasn't been displayed"
         # assert not self.wait_until_visible(
         #     self.ERROR_MSG).text, "Error message has been displayed"
