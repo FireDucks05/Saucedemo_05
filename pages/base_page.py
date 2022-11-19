@@ -9,6 +9,12 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 class BasePage:
     CART_BUTTON = (By.CLASS_NAME, 'shopping_cart_link')
+    BURGER_MENU = (By.ID, 'react-burger-menu-btn')
+    ALL_ITEMS = (By.ID, 'inventory_sidebar_link')
+    ABOUT = (By.ID, 'about_sidebar_link')
+    LOGOUT = (By.ID, 'logout_sidebar_link')
+    RESET_APP_STATE = (By.ID, 'logout_sidebar_link')
+
 
     def __init__(self, browser, url):
         self.browser = browser
@@ -61,5 +67,10 @@ class BasePage:
     def elements_are_present(self, locator, timeout: int = 5):
         return WebDriverWait(self.browser, timeout).until(ec.presence_of_all_elements_located(locator))
 
-    def go_to_cart(self, locator):
+    def go_to_cart(self):
         self.wait_until_clickable(self.CART_BUTTON).click()
+
+    def burger_menu(self):
+        self.wait_until_clickable(self.BURGER_MENU).click()
+    def logout(self):
+        self.wait_until_clickable(self.LOGOUT).click()
