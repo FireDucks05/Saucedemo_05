@@ -1,6 +1,7 @@
 import allure
 import pytest
 
+from pages.cart_page import CartPage
 from pages.inventory_page import InventoryPage
 
 
@@ -9,6 +10,7 @@ class TestCartClass:
     @pytest.fixture(autouse=True)
     def setup(self, browser, url):
         self.inventory_page = InventoryPage(browser, url + 'inventory.html')
+        self.cart_page = CartPage(browser, url + 'inventory.html')
 
 
     @allure.epic('US_002.00')
@@ -30,3 +32,17 @@ class TestCartClass:
             self.inventory_page.add_to_cart()
         with allure.step('step3 text after adding'):
             self.inventory_page.button_text_after_adding()
+
+    @allure.epic('US_002.00')
+    @allure.story('TC_002.00.03')
+    @allure.title("Remove from cart")
+    def test_remove_from_cart(self, browser, url):
+        with allure.step('step1 click on add button'):
+            self.inventory_page.add_to_cart()
+        with allure.step('step3 text after adding'):
+            self.inventory_page.go_to_cart()
+        with allure.step('step4 go to cart'):
+            self.cart_page.continue_shopping()
+        with allure.step('step4 check page'):
+            self.inventory_page.page_is_open(url)
+

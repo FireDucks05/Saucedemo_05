@@ -42,3 +42,13 @@ class TestAuthorizationClass:
         assert self.login_page.page_is_open(
             url="https://www.saucedemo.com/inventory.html"
         )
+
+    @allure.story('US_001.00')
+    @allure.title("Logout standart")
+    def test_logout_standart(self):
+        self.login_page.login_ui(POSITIVE_LOGIN_CREDENTIALS[0][0], POSITIVE_LOGIN_CREDENTIALS[0][1])
+        self.login_page.burger_menu()
+        self.login_page.logout()
+        assert self.login_page.page_is_open(
+            url="https://www.saucedemo.com/"
+        )
