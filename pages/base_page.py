@@ -15,7 +15,6 @@ class BasePage:
     LOGOUT = (By.ID, 'logout_sidebar_link')
     RESET_APP_STATE = (By.ID, 'logout_sidebar_link')
 
-
     def __init__(self, browser, url):
         self.browser = browser
         self.url = url
@@ -56,7 +55,6 @@ class BasePage:
         except TimeoutException:
             return False
 
-
     def page_is_open(self, url):
         try:
             self.wait_for_url_to_be(url)
@@ -65,12 +63,15 @@ class BasePage:
             return False
 
     def elements_are_present(self, locator, timeout: int = 5):
-        return WebDriverWait(self.browser, timeout).until(ec.presence_of_all_elements_located(locator))
+        return WebDriverWait(self.browser, timeout).until(
+            ec.presence_of_all_elements_located(locator)
+        )
 
     def go_to_cart(self):
         self.wait_until_clickable(self.CART_BUTTON).click()
 
     def burger_menu(self):
         self.wait_until_clickable(self.BURGER_MENU).click()
+
     def logout(self):
         self.wait_until_clickable(self.LOGOUT).click()

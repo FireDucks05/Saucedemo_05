@@ -16,4 +16,3 @@ class CartPage(BasePage):
 
     def continue_shopping(self):
         self.wait_until_clickable(self.CONTINUE_SHOPPING_BUTTON)
-
