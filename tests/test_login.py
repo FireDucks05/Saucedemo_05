@@ -47,7 +47,7 @@ class TestAuthorizationClass:
 
     @allure.story('US_001.00')
     @allure.title("Logout standart")
-    def test_logout_standart(self):
+    def test_logoutpoe_standart(self):
         self.login_page.login_ui(
             POSITIVE_LOGIN_CREDENTIALS[0][0], POSITIVE_LOGIN_CREDENTIALS[0][1]
         )
