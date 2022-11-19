@@ -26,10 +26,10 @@ def browser(request):
         options = webdriver.ChromeOptions()
         options.add_argument("--window-size=1600,1080")
         options.headless = True
-        browser = webdriver.Chrome('/Users/kate/WebDriver/chromedriver')
-        # browser = webdriver.Chrome(
-        #     service=Service(ChromeDriverManager().install()), options=options
-        # )
+        # browser = webdriver.Chrome('/Users/kate/WebDriver/chromedriver')
+        browser = webdriver.Chrome(
+            service=Service(ChromeDriverManager().install()), options=options
+        )
         yield browser
         browser.quit()
 
