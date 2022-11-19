@@ -22,6 +22,7 @@ class TestCartClass:
             assert self.inventory_page.show_sorted_elements() == SOTRING_AZ
 
     @allure.epic('US_004.00')
+    @allure.attach
     @allure.story('TC_004.00.02')
     @allure.title("Sort products Z-A")
     def test_sorting_ZA(self, browser, url):

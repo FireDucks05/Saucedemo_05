@@ -20,7 +20,7 @@ class CheckoutStepOnePage(BasePage):
     def error_when_empty_required_fied(self):
         assert not self.element_is_present(self.ERROR_MSG)
 
-    def check_error_message(self):
+    def error_message_is_present(self):
         assert "Error" in self.wait_until_visible(
             self.ERROR_MSG).text, "Error message hasn't been displayed"
         # assert not self.wait_until_visible(

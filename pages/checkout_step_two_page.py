@@ -10,5 +10,5 @@ class CheckoutStepTwoPage(BasePage):
     def finish_order(self):
         self.wait_until_clickable(self.FINISH_BUTTON).click()
 
-    def successfully_message(self):
+    def successfully_message_is_present(self):
         assert self.wait_for_url_to_be('https://www.saucedemo.com/checkout-complete.html')
