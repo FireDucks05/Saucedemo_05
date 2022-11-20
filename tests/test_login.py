@@ -12,6 +12,7 @@ class TestAuthorizationClass:
         self.login_page.open_page()
 
     @pytest.mark.parametrize(
+
         "user, password",
         POSITIVE_LOGIN_CREDENTIALS,
         ids=["standart_user", "problem_user", "performance_glitch_user"],
