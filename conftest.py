@@ -5,11 +5,10 @@ from webdriver_manager.firefox import GeckoDriverManager
 
 '''Initializing browser'''
 @pytest.fixture(autouse=True)
-def browser(request):
-    browser = request.config.getoption("--browser")
+def browser(request, headless):
     options = webdriver.FirefoxOptions()
     options.add_argument("--window-size=1600,1080")
-    options.headless = True
+    options.headless = headless
     browser = webdriver.Firefox(
         service=FirefoxService(GeckoDriverManager().install()), options=options
     )
@@ -17,12 +16,12 @@ def browser(request):
     browser.quit()
 
 '''Add URL'''
-@pytest.fixture(autouse=True)
-def url():
-    url = "https://www.saucedemo.com/"
-    if not url:
-        raise Exception("Wrong environment")
-    return url
+# @pytest.fixture(autouse=True)
+# def url():
+#     url = "https://www.saucedemo.com/"
+#     if not url:
+#         raise Exception("Wrong environment")
+#     return url
 
 '''Opportunity to launch background mode'''
 def pytest_addoption(parser):
@@ -30,6 +29,6 @@ def pytest_addoption(parser):
 
 
 '''System fixture for string parsing'''
-@pytest.fixture(scope='class')
+@pytest.fixture()
 def headless(request):
     return request.config.getoption("--headless")
