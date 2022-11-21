@@ -1,13 +1,18 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.firefox.service import Service as FirefoxService
-from webdriver_manager.firefox import GeckoDriverManager
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service as ChromeService
+
 
 '''Initializing browser'''
 @pytest.fixture(autouse=True)
 def browser(request, headless):
-    browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-    browser.maximize_window()
+    options = webdriver.ChromeOptions()
+    options.add_argument("--window-size=1600,1080")
+    options.headless = headless
+    browser = webdriver.Chrome(
+        service=ChromeService(ChromeDriverManager().install()), options=options
+    )
     yield browser
     browser.quit()
 
