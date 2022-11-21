@@ -16,8 +16,7 @@ def browser(request, headless):
         options.add_argument("--window-size=1600,1080")
         options.headless = headless
 
-        browser = webdriver.Firefox(
-            service=FirefoxService(GeckoDriverManager().install()), options=options
+        browser = webdriver.Firefox(FirefoxService(GeckoDriverManager().install()), options=options
         )
         yield browser
         browser.quit()
@@ -26,11 +25,9 @@ def browser(request, headless):
         options = webdriver.ChromeOptions()
         options.add_argument("--window-size=1600,1080")
         options.headless = headless
-        browser = webdriver.Chrome('/Users/kate/WebDriver/chromedriver')
         logging.info('start logs')
-        # browser = webdriver.Chrome(
-        #     service=Service(ChromeDriverManager().install()), options=options
-        # )
+        browser = webdriver.Chrome(ChromeDriverManager().install(), options=options
+        )
         yield browser
         logging.info('end logs')
         browser.quit()
@@ -45,9 +42,10 @@ def url():
 
 
 def pytest_addoption(parser):
-    parser.addoption("--launch",
+    parser.addoption(
+        "--launch",
         default="chrome",
-        choices=["chrome", "firefox", "ci"]
+        help="define browser: chrome or firefox, --browser=chrome",
     )
     parser.addoption(
         "--headless",
@@ -56,6 +54,6 @@ def pytest_addoption(parser):
     )
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='class')
 def headless(request):
     return request.config.getoption("--headless")
