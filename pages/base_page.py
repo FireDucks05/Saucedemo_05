@@ -1,5 +1,7 @@
+import logging
 from typing import Tuple
 
+from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebElement
@@ -8,6 +10,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 
 class BasePage:
+    LOGGER = logging.getLogger(__name__)
     CART_BUTTON = (By.CLASS_NAME, 'shopping_cart_link')
     BURGER_MENU = (By.ID, 'react-burger-menu-btn')
     ALL_ITEMS = (By.ID, 'inventory_sidebar_link')
@@ -29,9 +32,13 @@ class BasePage:
         return WebDriverWait(self.browser, timeout).until(ec.title_is(title))
 
     def wait_until_clickable(self, locator: Tuple, timeout: int = 5) -> WebElement:
-        return WebDriverWait(self.browser, timeout).until(
-            ec.element_to_be_clickable(locator)
-        )
+        try:
+            return WebDriverWait(self.browser, timeout).until(
+                ec.element_to_be_clickable(locator)
+            )
+        except NoSuchElementException as e:
+            self.LOGGER.error(f"NoSuchElementException: {e}")
+
 
     def wait_until_present(self, locator: Tuple, timeout: int = 5) -> WebElement:
         return WebDriverWait(self.browser, timeout).until(
@@ -52,14 +59,15 @@ class BasePage:
         try:
             self.wait_until_visible(locator, timeout)
             return True
-        except TimeoutException:
-            return False
+        except TimeoutException as e:
+            self.LOGGER.error(f"TimeoutException: {e}")
 
     def page_is_open(self, url):
         try:
             self.wait_for_url_to_be(url)
             return True
-        except TimeoutException:
+        except TimeoutException as e:
+            self.LOGGER.error(f"TimeoutException: {e}")
             return False
 
     def elements_are_present(self, locator, timeout: int = 5):

@@ -22,7 +22,7 @@ class TestAuthorizationClass:
     def test_login_positive(self, user, password):
         self.login_page.login_ui(user, password)
         assert self.login_page.page_is_open(
-            url="https://www.saucedemo.com/inventory.html"
+            url="https://www.saucedemo.com/inventory.html9"
         )
 
     @allure.story('US_001.00')
