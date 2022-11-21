@@ -6,12 +6,8 @@ from webdriver_manager.firefox import GeckoDriverManager
 '''Initializing browser'''
 @pytest.fixture(autouse=True)
 def browser(request, headless):
-    options = webdriver.FirefoxOptions()
-    options.add_argument("--window-size=1600,1080")
-    options.headless = headless
-    browser = webdriver.Firefox(
-        service=FirefoxService(GeckoDriverManager().install()), options=options
-    )
+    browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+    browser.maximize_window()
     yield browser
     browser.quit()
 
