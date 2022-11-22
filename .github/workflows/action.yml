@@ -44,7 +44,7 @@ jobs:
 
     - name: run only login
       if: always()
-      run: poetry run pytest tests/test_login.py --alluredir=allure-results
+      run: poetry run pytest tests/test_login.py --alluredir=allure-results -n auto
       continue-on-error: true
 
     - name: Get Allure history
