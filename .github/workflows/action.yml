@@ -45,15 +45,13 @@ jobs:
       #----------------------------------------------
       #  -----  test  -----
       #----------------------------------------------
-    - name: Install selenium-screenshot
-      if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-      run: pip install selenium-screenshot
+
       #----------------------------------------------
 
 
-    - name: run all tests
+    - name: run only login
       if: always()
-      run: poetry run pytest --alluredir=allure-results
+      run: poetry run pytest tests/test_login.py --alluredir=allure-results
       continue-on-error: true
 
     - name: Get Allure history
