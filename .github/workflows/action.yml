@@ -2,7 +2,7 @@ name: Saucedemo_05
 
 on:
   push:
-    branches: [ main, US_002.00, KateFox, KateFox-Ccookie ]
+    branches: [ main, US_002.00, KateFox, KateFox-cookie ]
   pull_request:
     branches: [ main ]
 
