@@ -42,11 +42,6 @@ jobs:
       uses: riccione/setup_firefox@v1
     - name: Check Chromium version
       run: chromium-browser --version
-      #----------------------------------------------
-      #  -----  test  -----
-      #----------------------------------------------
-
-      #----------------------------------------------
 
 
     - name: run only login
