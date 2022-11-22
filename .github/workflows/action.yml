@@ -42,9 +42,9 @@ jobs:
       run: chromium-browser --version
 
 
-    - name: run only login
+    - name: run all tests
       if: always()
-      run: poetry run pytest --alluredir=allure-results -n auto
+      run: poetry run pytest --alluredir=allure-results
       continue-on-error: true
 
     - name: Get Allure history

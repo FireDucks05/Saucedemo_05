@@ -2,11 +2,7 @@ import logging
 
 import pytest
 from selenium import webdriver
-from selenium.webdriver.common.service import Service
-from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.firefox import GeckoDriverManager
-import logging
 
 
 @pytest.fixture(autouse=True)
@@ -19,7 +15,6 @@ def browser(request, headless):
     yield browser
     logging.info('end logs')
     browser.quit()
-
 
 
 @pytest.fixture(autouse=True)
