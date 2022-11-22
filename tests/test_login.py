@@ -22,7 +22,18 @@ class TestAuthorizationClass:
     def test_login_positive(self, user, password):
         self.login_page.login_ui(user, password)
         assert self.login_page.page_is_open(
-            url="https://www.saucedemo.com/inventory.html9"
+            url="https://www.saucedemo.com/inventory.html"
+        )
+
+    @allure.story('US_001.00')
+    @allure.title("Negative login")
+    @pytest.mark.xfail()
+    def test_login_negative(self):
+        self.login_page.login_ui(
+            NEGATIVE_LOGIN_CREDENTIALS["user"], NEGATIVE_LOGIN_CREDENTIALS["password"]
+        )
+        assert self.login_page.page_is_open(
+            url="https://www.saucedemo.com/inventory.html"
         )
 
     @allure.story('US_001.00')
@@ -47,8 +58,27 @@ class TestAuthorizationClass:
         )
 
     @allure.story('US_001.00')
+    @allure.title("Standart_user login")
+    @pytest.mark.negative
+    def test_login_WO_pass(self):
+        self.login_page.login_ui(
+            POSITIVE_LOGIN_CREDENTIALS[0][0], ''
+        )
+        self.login_page.impossibility_auth()
+
+    @allure.story('US_001.00')
+    @allure.title("Standart_user login")
+    @pytest.mark.negative
+    def test_login_WO_login(self):
+        self.login_page.login_ui(
+            '', POSITIVE_LOGIN_CREDENTIALS[0][1]
+        )
+        self.login_page.impossibility_auth()
+
+    @allure.story('US_001.00')
     @allure.title("Logout standart")
-    def test_logoutpoe_standart(self):
+    @pytest.mark.positive
+    def test_logout_standart(self):
         self.login_page.login_ui(
             POSITIVE_LOGIN_CREDENTIALS[0][0], POSITIVE_LOGIN_CREDENTIALS[0][1]
         )
