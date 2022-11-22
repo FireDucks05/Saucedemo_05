@@ -2,7 +2,7 @@ name: Saucedemo_05
 
 on:
   push:
-    branches: [ main, US_002.00, KateFox ]
+    branches: [ main, US_002.00, KateFox, KateFox-Ccookie ]
   pull_request:
     branches: [ main ]
 
@@ -46,7 +46,7 @@ jobs:
 
     - name: run only login
       if: always()
-      run: poetry run pytest tests/test_login.py --alluredir=allure-results
+      run: poetry run pytest --alluredir=allure-results
       continue-on-error: true
 
     - name: Get Allure history
