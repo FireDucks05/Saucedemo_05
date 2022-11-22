@@ -14,6 +14,7 @@ class TestCartClass:
     @allure.story('TC_004.00.01')
     @allure.title("Sort products A-Z")
     def test_sorting_az(self, browser, url):
+        self.inventory_page.login_with_cookie()
         with allure.step('step1 add to cart'):
             self.inventory_page.sort_by_AZ()
         with allure.step('step2 check sotring'):
@@ -23,6 +24,7 @@ class TestCartClass:
     @allure.story('TC_004.00.02')
     @allure.title("Sort products Z-A")
     def test_sorting_za(self, browser, url):
+        self.inventory_page.login_with_cookie()
         with allure.step('step1 add to cart'):
             self.inventory_page.sort_by_ZA()
         with allure.step('step2 check sotring'):
@@ -32,6 +34,7 @@ class TestCartClass:
     @allure.story('TC_004.00.03')
     @allure.title("Sort products ASC price")
     def test_sorting_asc(self, browser, url):
+        self.inventory_page.login_with_cookie()
         with allure.step('step1 add to cart'):
             self.inventory_page.sort_by_ASC()
         with allure.step('step2 check sotring'):
@@ -41,6 +44,7 @@ class TestCartClass:
     @allure.story('TC_004.00.04')
     @allure.title("Sort products DESC price")
     def test_sorting_desc(self, browser, url):
+        self.inventory_page.login_with_cookie()
         with allure.step('step1 add to cart'):
             self.inventory_page.sort_by_DESC()
         with allure.step('step2 check sotring'):

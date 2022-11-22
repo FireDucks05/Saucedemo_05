@@ -17,6 +17,7 @@ class TestCartClass:
     @allure.story('TC_002.00.01')
     @allure.title("Bage change when adding")
     def test_change_bage_when_adding(self, browser, url):
+        self.inventory_page.login_with_cookie()
         with allure.step('step1 add to cart'):
             self.inventory_page.add_to_cart()
         with allure.step('step2 watch changes'):
@@ -26,6 +27,7 @@ class TestCartClass:
     @allure.story('TC_002.00.02')
     @allure.title("Button text after remove")
     def test_change_add_button_text(self, browser, url):
+        self.inventory_page.login_with_cookie()
         with allure.step('step1 text before adding'):
             self.inventory_page.button_text_before_adding()
         with allure.step('step2 click on button'):

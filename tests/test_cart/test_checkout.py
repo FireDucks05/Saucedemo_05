@@ -25,7 +25,7 @@ class TestCheckoutClass:
     @allure.title("Successfully purchase")
     def test_purchase(self, browser, url):
         with allure.step('step1 add to cart'):
-            self.inventory_page.login()
+            self.inventory_page.login_with_cookie()
             self.inventory_page.add_to_cart()
         with allure.step('step2 go to cart'):
             self.inventory_page.go_to_cart()
@@ -49,6 +49,7 @@ class TestCheckoutClass:
     @allure.story('TC_007.00.01')
     @allure.title("Invalid message on checkout step")
     def test_error_message_WO_first_name(self, browser, url):
+        self.inventory_page.login_with_cookie()
         with allure.step('step1 add to cart'):
             self.inventory_page.add_to_cart()
         with allure.step('step2 go to cart'):
@@ -66,6 +67,7 @@ class TestCheckoutClass:
     @allure.story('TC_007.00.02')
     @allure.title("Invalid message on checkout step ZIP missed")
     def test_error_message_WO_zip(self, browser, url):
+        self.inventory_page.login_with_cookie()
         with allure.step('step1 add to cart'):
             self.inventory_page.add_to_cart()
         with allure.step('step2 go to cart'):
