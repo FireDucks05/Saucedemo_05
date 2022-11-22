@@ -44,7 +44,7 @@ jobs:
 
     - name: run all tests
       if: always()
-      run: poetry run pytest --alluredir=allure-results
+      run: poetry run pytest --alluredir=allure-results --headless
       continue-on-error: true
 
     - name: Get Allure history
