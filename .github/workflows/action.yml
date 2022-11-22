@@ -42,6 +42,14 @@ jobs:
       uses: riccione/setup_firefox@v1
     - name: Check Chromium version
       run: chromium-browser --version
+      #----------------------------------------------
+      #  -----  test  -----
+      #----------------------------------------------
+    - name: Install selenium-screenshot
+      if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+      run: pip install selenium-screenshot
+      #----------------------------------------------
+
 
     - name: run all tests
       if: always()
@@ -71,15 +79,6 @@ jobs:
         PUBLISH_BRANCH: gh-pages
         PUBLISH_DIR: allure-history
 
-    - name: Post the link to the report
-      if: always()
-      uses: Sibz/github-status-action@v1
-      with:
-        authToken: ${{secrets.GITHUB_TOKEN}}
-        context: 'Test report'
-        state: 'success'
-        sha: ${{ github.event.pull_request.head.sha }}
-        target_url: simple-elf.github.io/github-allure-history/${{ github.run_number }}
 
 
 
