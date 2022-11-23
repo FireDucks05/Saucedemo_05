@@ -2,35 +2,20 @@ import logging
 
 import pytest
 from selenium import webdriver
-from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.firefox import GeckoDriverManager
 
 
 
 @pytest.fixture(autouse=True)
 def browser(request, headless):
-    browser = request.config.getoption("--launch")
-    if browser == "firefox":
-        options = webdriver.FirefoxOptions()
-        options.add_argument("--window-size=1600,1080")
-        options.headless = headless
-
-        browser = webdriver.Firefox(FirefoxService(GeckoDriverManager().install()), options=options
-        )
-        yield browser
-        browser.quit()
-    else:
-
-        options = webdriver.ChromeOptions()
-        options.add_argument("--window-size=1600,1080")
-        options.headless = headless
-        logging.info('start logs')
-        browser = webdriver.Chrome(ChromeDriverManager().install(), options=options
-        )
-        yield browser
-        logging.info('end logs')
-        browser.quit()
+    options = webdriver.ChromeOptions()
+    options.headless = headless
+    logging.info('start logs')
+    browser = webdriver.Chrome(ChromeDriverManager().install(), options=options
+    )
+    yield browser
+    logging.info('end logs')
+    browser.quit()
 
 
 @pytest.fixture(autouse=True)

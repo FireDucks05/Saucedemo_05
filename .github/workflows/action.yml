@@ -38,19 +38,17 @@ jobs:
 
     - name: Install Chrome
       uses: browser-actions/setup-chrome@latest
-    - name: Install Firefox
-      uses: riccione/setup_firefox@v1
     - name: Check Chromium version
       run: chromium-browser --version
 
 
-    - name: run only login
+    - name: run all tests
       if: always()
-      run: poetry run pytest --alluredir=allure-results
+      run: poetry run pytest --alluredir=allure-results --headless
       continue-on-error: true
 
     - name: Get Allure history
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       if: always()
       continue-on-error: true
       with:
@@ -68,13 +66,9 @@ jobs:
       if: always()
       uses: peaceiris/actions-gh-pages@v2
       env:
-        PERSONAL_TOKEN: ${{ secrets.ALLURE_DEPLOY  }}
+        PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
         PUBLISH_BRANCH: gh-pages
         PUBLISH_DIR: allure-history
-
-
-
-
 
 
 
