@@ -329,6 +329,27 @@ tomli = {version = ">=1.0.0", markers = "python_version < \"3.11\""}
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.7.2)", "requests", "xmlschema"]
 
 [[package]]
+name = "pytest_failed_screenshot"
+version = "1.0.2"
+description = ""
+category = "main"
+optional = false
+python-versions = "*"
+develop = false
+
+[package.dependencies]
+allure-pytest = "*"
+allure-python-commons = "*"
+pytest = "*"
+selenium = "*"
+
+[package.source]
+type = "git"
+url = "https://github.com/demmi/pytest-failed-screenshot.git"
+reference = "HEAD"
+resolved_reference = "ed530735ad2ccee13600044c8d9ec6ad628073a9"
+
+[[package]]
 name = "pytest-html"
 version = "3.2.0"
 description = "pytest plugin for generating HTML reports"
@@ -592,7 +613,7 @@ h11 = ">=0.9.0,<1"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "a71382db25dde0b94a9ef62f52d5b4be79b8ebc1c65d028f60903443e52da81a"
+content-hash = "010cb6a2271206d28610c3915b205ed6acde7178dce7281b76358d79358d0475"
 
 [metadata.files]
 allure-pytest = [
@@ -860,6 +881,7 @@ pytest = [
     {file = "pytest-7.2.0-py3-none-any.whl", hash = "sha256:892f933d339f068883b6fd5a459f03d85bfcb355e4981e146d2c7616c21fef71"},
     {file = "pytest-7.2.0.tar.gz", hash = "sha256:c4014eb40e10f11f355ad4e3c2fb2c6c6d1919c73f3b5a433de4708202cade59"},
 ]
+pytest_failed_screenshot = []
 pytest-html = [
     {file = "pytest-html-3.2.0.tar.gz", hash = "sha256:c4e2f4bb0bffc437f51ad2174a8a3e71df81bbc2f6894604e604af18fbe687c3"},
     {file = "pytest_html-3.2.0-py3-none-any.whl", hash = "sha256:868c08564a68d8b2c26866f1e33178419bb35b1e127c33784a28622eb827f3f3"},
