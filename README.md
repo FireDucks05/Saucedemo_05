@@ -1,13 +1,9 @@
-# Saucedemo_05
+Hey there! This is pet project for UI testing for https://www.saucedemo.com/
 
-### Links
+We are team of enthusiastic automation engineers, passionate quality assurance on Python with pytest framework. We desire to make any product better whether if it's a food, cars, or software production line.
+Testing is an essential phase in any product life cycle; , the outcomes should match what's expected and meet, satisfy the need that we created the product for.
+Our main goals:
+ - use best practices
+ - execute modern instruments
+- learn from others' mistakes
 
-target: https://www.saucedemo.com/
-
-Homework:
-- poetry => https://python-poetry.org/
-- pytest: arguments => https://docs.pytest.org/en/7.2.x/
-- black https://pypi.org/project/black/
-- flake8 https://pypi.org/project/flake8/
-- write user stories
-- write test cases
