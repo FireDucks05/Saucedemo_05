@@ -83,3 +83,8 @@ class BasePage:
 
     def logout(self):
         self.wait_until_clickable(self.LOGOUT).click()
+
+    def login_with_cookie(self):
+        self.open_page()
+        self.browser.add_cookie({"name": "session-username", "value": 'standard_user'})
+        self.open_page()

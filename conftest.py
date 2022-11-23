@@ -5,6 +5,7 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 
 
+
 @pytest.fixture(autouse=True)
 def browser(request, headless):
     options = webdriver.ChromeOptions()
@@ -41,3 +42,6 @@ def pytest_addoption(parser):
 @pytest.fixture(scope='class')
 def headless(request):
     return request.config.getoption("--headless")
+
+
+
