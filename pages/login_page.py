@@ -18,3 +18,5 @@ class LoginPage:
 
     def getfield(self):
         return self.browser.find_element(*LoginPage.login_button)
+
+

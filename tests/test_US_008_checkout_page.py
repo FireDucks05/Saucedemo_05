@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 @pytest.mark.usefixtures("setup")
-class TestExampleOne:
+class Testcheckoutpage:
     def test_title(self):
         self.browser.find_element(By.ID, 'user-name').send_keys("vaysa")
 
