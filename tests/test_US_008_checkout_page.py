@@ -1,56 +1,12 @@
 import pytest
-import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-
-options = Options()
-options.add_argument("start-maximized")
-options.add_argument("--headless")
-browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-
-link = "https://www.saucedemo.com/"
-browser.get(link)
-
-login = "standard_user"
-password = "secret_sauce"
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
-@pytest.fixture(scope="function")
-def login_cred():
-    browser.find_element(By.ID, 'user-name').send_keys(login)
-    browser.find_element(By.ID, 'password').send_keys(password)
-    browser.find_element(By.ID, 'login-button').click()
+@pytest.mark.usefixtures("setup")
+class TestExampleOne:
+    def test_title(self):
+        self.browser.find_element(By.ID, 'user-name').send_keys("vaysa")
 
-
-@pytest.fixture(scope="function")
-def product_selection():
-    time.sleep(5)
-    browser.find_element(By.ID, 'add-to-cart-sauce-labs-backpack').click()
-    browser.find_element(By.CLASS_NAME, "shopping_cart_link").click()
-    browser.find_element(By.ID, "checkout").click()
-
-
-@pytest.fixture(scope="function")
-def customer_name():
-    browser.find_element(By.ID, "first-name").send_keys("Vasya")
-    browser.find_element(By.ID, "last-name").send_keys("Ivanov")
-    browser.find_element(By.ID, "postal-code").send_keys("94939")
-
-
-
-
-def test_008_00_01_dont_fill_form(login_cred, product_selection):
-    browser.find_element(By.ID, "cancel").click()
-    assert browser.current_url == "https://www.saucedemo.com/cart.html"
-    browser.find_element(By.ID, "react-burger-menu-btn").click()
-    time.sleep(2)
-    browser.find_element(By.ID, "logout_sidebar_link").click()
-
-
-def test_008_00_02_fill_form(login_cred, product_selection, customer_name):
-    browser.find_element(By.ID, "continue").click()
-    browser.find_element(By.ID, "cancel").click()
-    assert browser.current_url == "https://www.saucedemo.com/inventory.html"
