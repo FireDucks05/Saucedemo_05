@@ -15,7 +15,6 @@ pytest = "^7.2.0"
 allure-pytest = "^2.11.1"
 pytest-xdist = "^3.0.2"
 pytest-html = "^3.2.0"
-selenium-screenshot = "^2.0.0"
 pytest-splinter = "^3.3.2"
 pytest-failed-screenshot = {git = "https://github.com/demmi/pytest-failed-screenshot.git"}
 
