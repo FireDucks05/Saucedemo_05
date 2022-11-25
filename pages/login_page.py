@@ -18,5 +18,8 @@ class LoginPage(BasePage):
     def check_user_is_authorized(self):
         assert self.element_is_present(self.HEADER_LOGO), "Logo is missing"
 
+    def user_successfully_authorized(self):
+        assert self.browser.page_is_open(url="https://www.saucedemo.com/inventory.html")
+
     def impossibility_auth(self):
         assert self.element_is_present(self.ERROR_BTN), 'Auth successful'

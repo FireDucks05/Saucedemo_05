@@ -21,9 +21,7 @@ class TestAuthorizationClass:
     @allure.title("Registered user is able to login with valid credentials")
     def test_login_positive(self, user, password):
         self.login_page.login_ui(user, password)
-        assert self.login_page.page_is_open(
-            url="https://www.saucedemo.com/inventory.html"
-        )
+        self.login_page.user_successfully_authorized()
 
 
     @allure.story('US_001.00 | Login Page')
@@ -33,9 +31,7 @@ class TestAuthorizationClass:
         self.login_page.login_ui(
             NEGATIVE_LOGIN_CREDENTIALS["user"], NEGATIVE_LOGIN_CREDENTIALS["password"]
         )
-        assert self.login_page.page_is_open(
-            url="https://www.saucedemo.com/inventory.html"
-        )
+        self.login_page.user_successfully_authorized()
 
     @allure.story('US_001.00 | Login Page')
     @allure.title("Login without password impossible")
@@ -64,4 +60,4 @@ class TestAuthorizationClass:
         )
         self.login_page.burger_menu()
         self.login_page.logout()
-        assert self.login_page.page_is_open(url="https://www.saucedemo.com/inventory.html")
+        self.login_page.user_successfully_authorized()

@@ -117,3 +117,9 @@ class BasePage:
             return self.wait_until_clickable(self.FACEBOOK).click()
         except NoSuchElementException as e:
             self.LOGGER.error(f"NoSuchElementException: {e}")
+
+    def facebook_is_open(self):
+        assert self.wait_for_url_to_be('https://www.facebook.com/saucelabs')
+
+    def switch_to_next_tab(self):
+        self.browser.switch_to.window(self.browser.window_handles[1])
