@@ -20,8 +20,7 @@ class TestCheckoutClass:
             browser, url + 'checkout-step-two.html'
         )
 
-    @allure.epic('UC_006.00')
-    @allure.story('TC_006.00.01')
+    @allure.story('US_006.00 | Checkout page > Valid checkout')
     @allure.title("Successfully purchase")
     def test_purchase(self, browser, url):
         with allure.step('step1 add to cart'):
@@ -45,8 +44,7 @@ class TestCheckoutClass:
         with allure.step('step6 order confirmed'):
             self.checkout_page2.successfully_message_is_present()
 
-    @allure.epic('UC_007.00')
-    @allure.story('TC_007.00.01')
+    @allure.story('US_007.00 | Checkout page > Invalid Checkout')
     @allure.title("Invalid message on checkout step")
     def test_error_message_WO_first_name(self, browser, url):
         self.inventory_page.login_with_cookie()
@@ -63,8 +61,7 @@ class TestCheckoutClass:
         with allure.step('step5 check error msg'):
             self.checkout_page.error_message_is_present()
 
-    @allure.epic('UC_007.00')
-    @allure.story('TC_007.00.02')
+    @allure.story('US_007.00 | Checkout page > Invalid Checkout')
     @allure.title("Invalid message on checkout step ZIP missed")
     def test_error_message_WO_zip(self, browser, url):
         self.inventory_page.login_with_cookie()
@@ -72,10 +69,8 @@ class TestCheckoutClass:
             self.inventory_page.add_to_cart()
         with allure.step('step2 go to cart'):
             self.inventory_page.go_to_cart()
-
         with allure.step('step3 go checkout'):
             self.cart_page.checkout()
-
         with allure.step('step4 fill information without zip code'):
             self.checkout_page.input_your_informarion(
                 INFORMATION_DATA["first_name"], INFORMATION_DATA["last_name"], ''
