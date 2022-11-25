@@ -48,3 +48,9 @@ class TestCartClass:
             self.cart_page.continue_shopping()
         with allure.step('step4 check page'):
             self.inventory_page.page_is_open(url)
+
+    def test_go_to_facebook(self, browser, url):
+        self.inventory_page.login_with_cookie()
+        self.inventory_page.go_to_footer_facebook()
+        browser.switch_to_window(browser.window_handles[1])
+        browser.current_url= 'https://www.facebook.com/saucelabs'

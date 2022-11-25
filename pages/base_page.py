@@ -17,19 +17,31 @@ class BasePage:
     ABOUT = (By.ID, 'about_sidebar_link')
     LOGOUT = (By.ID, 'logout_sidebar_link')
     RESET_APP_STATE = (By.ID, 'logout_sidebar_link')
+    FACEBOOK = (By.XPATH, '//a[contains(@href,"facebook")]')
 
     def __init__(self, browser, url):
         self.browser = browser
         self.url = url
 
     def open_page(self):
-        self.browser.get(self.url)
+        try:
+            self.browser.get(self.url)
+        except NoSuchElementException as e:
+            self.LOGGER.error(f"NoSuchElementException: {e}")
 
     def wait_for_url_to_be(self, url: str, timeout: int = 5) -> bool:
-        return WebDriverWait(self.browser, timeout).until(ec.url_to_be(url))
+        try:
+            WebDriverWait(self.browser, timeout).until(ec.url_to_be(url))
+            return True
+        except Exception as e:
+            self.LOGGER.error(f"Exception: {e}")
 
     def page_title_is(self, title: str, timeout: int = 5) -> bool:
-        return WebDriverWait(self.browser, timeout).until(ec.title_is(title))
+        try:
+            WebDriverWait(self.browser, timeout).until(ec.title_is(title))
+            return True
+        except Exception as e:
+            self.LOGGER.error(f"Exception: {e}")
 
     def wait_until_clickable(self, locator: Tuple, timeout: int = 5) -> WebElement:
         try:
@@ -38,7 +50,6 @@ class BasePage:
             )
         except NoSuchElementException as e:
             self.LOGGER.error(f"NoSuchElementException: {e}")
-
 
     def wait_until_present(self, locator: Tuple, timeout: int = 5) -> WebElement:
         return WebDriverWait(self.browser, timeout).until(
@@ -71,20 +82,38 @@ class BasePage:
             return False
 
     def elements_are_present(self, locator, timeout: int = 5):
-        return WebDriverWait(self.browser, timeout).until(
-            ec.presence_of_all_elements_located(locator)
-        )
+        try:
+            return WebDriverWait(self.browser, timeout).until(
+                ec.presence_of_all_elements_located(locator)
+            )
+        except Exception as e:
+            self.LOGGER.error(f"Exception: {e}")
 
     def go_to_cart(self):
-        self.wait_until_clickable(self.CART_BUTTON).click()
+        try:
+            return self.wait_until_clickable(self.CART_BUTTON).click()
+        except NoSuchElementException as e:
+            self.LOGGER.error(f"NoSuchElementException: {e}")
 
     def burger_menu(self):
-        self.wait_until_clickable(self.BURGER_MENU).click()
+        try:
+            return self.wait_until_clickable(self.BURGER_MENU).click()
+        except NoSuchElementException as e:
+            self.LOGGER.error(f"NoSuchElementException: {e}")
 
     def logout(self):
-        self.wait_until_clickable(self.LOGOUT).click()
+        try:
+            return self.wait_until_clickable(self.LOGOUT).click()
+        except NoSuchElementException as e:
+            self.LOGGER.error(f"NoSuchElementException: {e}")
 
     def login_with_cookie(self):
         self.open_page()
         self.browser.add_cookie({"name": "session-username", "value": 'standard_user'})
         self.open_page()
+
+    def go_to_footer_facebook(self):
+        try:
+            return self.wait_until_clickable(self.FACEBOOK).click()
+        except NoSuchElementException as e:
+            self.LOGGER.error(f"NoSuchElementException: {e}")

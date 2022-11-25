@@ -10,8 +10,7 @@ class TestCartClass:
     def setup(self, browser, url):
         self.inventory_page = InventoryPage(browser, url + 'inventory.html')
 
-    @allure.epic('US_004.00')
-    @allure.story('TC_004.00.01')
+    @allure.story('US_004.00 | Home Page > Filter > User is able to sort items by different metrics')
     @allure.title("Sort products A-Z")
     def test_sorting_az(self, browser, url):
         self.inventory_page.login_with_cookie()
@@ -20,8 +19,7 @@ class TestCartClass:
         with allure.step('step2 check sotring'):
             assert self.inventory_page.show_sorted_elements() == SOTRING_AZ
 
-    @allure.epic('US_004.00')
-    @allure.story('TC_004.00.02')
+    @allure.story('US_004.00 | Home Page > Filter > User is able to sort items by different metrics')
     @allure.title("Sort products Z-A")
     def test_sorting_za(self, browser, url):
         self.inventory_page.login_with_cookie()
@@ -30,8 +28,7 @@ class TestCartClass:
         with allure.step('step2 check sotring'):
             assert self.inventory_page.show_sorted_elements() == SOTRING_ZA
 
-    @allure.epic('US_004.00')
-    @allure.story('TC_004.00.03')
+    @allure.story('US_004.00 | Home Page > Filter > User is able to sort items by different metrics')
     @allure.title("Sort products ASC price")
     def test_sorting_asc(self, browser, url):
         self.inventory_page.login_with_cookie()
@@ -40,8 +37,7 @@ class TestCartClass:
         with allure.step('step2 check sotring'):
             assert self.inventory_page.show_sorted_elements() == SOTRING_PRICE_ASC
 
-    @allure.epic('US_004.00')
-    @allure.story('TC_004.00.04')
+    @allure.story('US_004.00 | Home Page > Filter > User is able to sort items by different metrics')
     @allure.title("Sort products DESC price")
     def test_sorting_desc(self, browser, url):
         self.inventory_page.login_with_cookie()
