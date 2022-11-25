@@ -1,0 +1,7 @@
+"Epic","Feature","Story","FAILED","BROKEN","PASSED","SKIPPED","UNKNOWN"
+"","","US_004.00 | Home Page > Filter > User is able to sort items by different metrics","0","0","4","0","0"
+"","","US_001.00 | Login Page","1","0","5","1","0"
+"","","US_002.00 | The authorized user is able to add items in their cart","0","0","3","0","0"
+"","","US_007.00 | Checkout page > Invalid Checkout","0","0","2","0","0"
+"","","US_006.00 | Checkout page > Valid checkout","0","0","1","0","0"
+"","","Footer buttons","1","0","0","0","0"
