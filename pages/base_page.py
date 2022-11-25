@@ -1,8 +1,7 @@
 import logging
 from typing import Tuple
 
-from selenium.common.exceptions import NoSuchElementException
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebElement
 from selenium.webdriver.support import expected_conditions as ec
@@ -26,8 +25,8 @@ class BasePage:
     def open_page(self):
         try:
             self.browser.get(self.url)
-        except NoSuchElementException as e:
-            self.LOGGER.error(f"NoSuchElementException: {e}")
+        except Exception as e:
+            self.LOGGER.error(f"tException: {e}")
 
     def wait_for_url_to_be(self, url: str, timeout: int = 5) -> bool:
         try:
@@ -48,23 +47,32 @@ class BasePage:
             return WebDriverWait(self.browser, timeout).until(
                 ec.element_to_be_clickable(locator)
             )
-        except NoSuchElementException as e:
-            self.LOGGER.error(f"NoSuchElementException: {e}")
+        except TimeoutException as e:
+            self.LOGGER.error(f"TimeoutException: {e}")
 
     def wait_until_present(self, locator: Tuple, timeout: int = 5) -> WebElement:
-        return WebDriverWait(self.browser, timeout).until(
-            ec.presence_of_element_located(locator)
-        )
+        try:
+            return WebDriverWait(self.browser, timeout).until(
+                ec.presence_of_element_located(locator)
+            )
+        except TimeoutException as e:
+            self.LOGGER.error(f"TimeoutException: {e}")
 
     def wait_until_not_present(self, locator: Tuple, timeout=5) -> WebElement:
-        return WebDriverWait(self.browser, timeout).until_not(
-            ec.presence_of_element_located(locator)
-        )
+        try:
+            return WebDriverWait(self.browser, timeout).until_not(
+                ec.presence_of_element_located(locator)
+            )
+        except TimeoutException as e:
+            self.LOGGER.error(f"TimeoutException: {e}")
 
     def wait_until_visible(self, locator: Tuple, timeout: int = 5) -> WebElement:
-        return WebDriverWait(self.browser, timeout).until(
-            ec.visibility_of_element_located(locator)
-        )
+        try:
+            return WebDriverWait(self.browser, timeout).until(
+                ec.visibility_of_element_located(locator)
+            )
+        except TimeoutException as e:
+            self.LOGGER.error(f"TimeoutException: {e}")
 
     def element_is_present(self, locator: Tuple, timeout: int = 5) -> bool:
         try:
@@ -113,13 +121,13 @@ class BasePage:
         self.open_page()
 
     def go_to_footer_facebook(self):
-        try:
-            return self.wait_until_clickable(self.FACEBOOK).click()
-        except NoSuchElementException as e:
-            self.LOGGER.error(f"NoSuchElementException: {e}")
+        return self.wait_until_clickable(self.FACEBOOK).click()
 
     def facebook_is_open(self):
         assert self.wait_for_url_to_be('https://www.facebook.com/saucelabs')
 
     def switch_to_next_tab(self):
-        self.browser.switch_to.window(self.browser.window_handles[1])
+        try:
+            return self.browser.switch_to.window(self.browser.window_handles[1])
+        except Exception as e:
+            self.LOGGER.error(f"Exception: {e}")
