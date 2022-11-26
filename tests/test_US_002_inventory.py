@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 
 
 @pytest.mark.usefixtures("setup")
-class TestLoginPage:
+class TestInventory:
     @pytest.fixture(scope="function")
     def login(self):
         self.browser.find_element(By.ID, 'user-name').send_keys('standard_user')
@@ -15,13 +15,13 @@ class TestLoginPage:
         time.sleep(2)
         self.browser.find_element(By.ID, "logout_sidebar_link").click()
 
-    def test_001_login(self, login):
-        page = "https://www.saucedemo.com/inventory.html"
-        assert page == 'https://www.saucedemo.com/inventory.html'
+    def test_002_001_add_items_to_cart(self,login):
+        self.browser.find_element(By.ID, "add-to-cart-sauce-labs-backpack").click()
+        count = self.browser.find_element(By.CLASS_NAME, 'shopping_cart_badge').text
+        assert count in "1"
 
-    def test_logout(self, login):
+    def test_002_add_button_changed(self,login):
+        self.browser.find_element(By.ID, "add-to-cart-sauce-labs-backpack").click()
 
-        page = "https://www.saucedemo.com/"
-        assert page == "https://www.saucedemo.com/"
 
 
