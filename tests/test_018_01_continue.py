@@ -3,6 +3,7 @@ import time
 from selenium.webdriver.common.by import By
 
 
+
 @pytest.mark.usefixtures("setup")
 class TestInventory:
     @pytest.fixture(scope="function")
@@ -16,15 +17,10 @@ class TestInventory:
         time.sleep(2)
         self.browser.find_element(By.ID, "logout_sidebar_link").click()
 
-    def test_003_remove_items_cart(self,login):
+    def test_007_001_checkout_item_invalid_name(self,login):
         self.browser.find_element(By.ID, "add-to-cart-sauce-labs-backpack").click()
-        self.browser.find_element(By.ID, "add-to-cart-sauce-labs-bolt-t-shirt").click()
         self.browser.find_element(By.ID, "shopping_cart_container").click()
-        self.browser.find_element(By.ID, "remove-sauce-labs-backpack").click()
-        count = self.browser.find_element(By.CLASS_NAME, 'shopping_cart_badge').text
-        assert count in "1"
-
-    def test_004_01_sort_items(self,login):
-        pass
-
-
+        self.browser.find_element(By.ID, "checkout").click()
+        self.browser.find_element(By.ID, "continue").click()
+        error_message = self.browser.find_element(By.CSS_SELECTOR,"h3[data-test='error']").text
+        assert "Error: First Name is required" in error_message
