@@ -16,7 +16,13 @@ class TestInventory:
         time.sleep(2)
         self.browser.find_element(By.ID, "logout_sidebar_link").click()
 
-    def test_remove_items_from_cart(self,login):
+    def test_003_remove_items_cart(self,login):
         self.browser.find_element(By.ID, "add-to-cart-sauce-labs-backpack").click()
+        self.browser.find_element(By.ID, "add-to-cart-sauce-labs-bolt-t-shirt").click()
         self.browser.find_element(By.ID, "shopping_cart_container").click()
-        self.browser.find_element(By.ID, "remove-sauce-labs-backpack").click
+        self.browser.find_element(By.ID, "remove-sauce-labs-backpack").click()
+        count = self.browser.find_element(By.CLASS_NAME, 'shopping_cart_badge').text
+        assert count in "1"
+
+
+
