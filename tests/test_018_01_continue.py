@@ -20,7 +20,6 @@ class TestInventory:
     def test_007_001_checkout_item_invalid_name(self,login):
         self.browser.find_element(By.ID, "add-to-cart-sauce-labs-backpack").click()
         self.browser.find_element(By.ID, "shopping_cart_container").click()
-        self.browser.find_element(By.ID, "checkout").click()
-        self.browser.find_element(By.ID, "continue").click()
-        error_message = self.browser.find_element(By.CSS_SELECTOR,"h3[data-test='error']").text
-        assert "Error: First Name is required" in error_message
+        self.browser.find_element(By.ID, "continue-shopping").click()
+        link = "https://www.saucedemo.com/inventory.html"
+        assert "https://www.saucedemo.com/inventory.html" in link
