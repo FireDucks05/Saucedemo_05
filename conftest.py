@@ -1,27 +1,15 @@
 import pytest
-from selenium import webdriver
-import pytest
 import time
+from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service as ChromeService
-
 
 @pytest.fixture(scope="function")
 def browser():
     options = webdriver.ChromeOptions()
     options.headless = False
     browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
-
     return browser
-
-
-    #request.cls.browser = browser
-
-
 
 @pytest.fixture(autouse=True)
 def login(browser):
