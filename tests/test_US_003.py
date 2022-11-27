@@ -11,23 +11,12 @@ class TestInventory:
         self.browser.find_element(By.ID, 'password').send_keys('secret_sauce')
         self.browser.find_element(By.ID, 'login-button').click()
         yield
-        self.browser.find_element(By.ID, "remove-sauce-labs-backpack").click()
+
         self.browser.find_element(By.ID, "react-burger-menu-btn").click()
         time.sleep(2)
         self.browser.find_element(By.ID, "logout_sidebar_link").click()
 
-    def test_002_001_add_items_to_cart(self,login):
+    def test_remove_items_from_cart(self,login):
         self.browser.find_element(By.ID, "add-to-cart-sauce-labs-backpack").click()
-        count = self.browser.find_element(By.CLASS_NAME, 'shopping_cart_badge').text
-        assert count in "1"
-
-    def test_002_add_button_changed_to_remove(self,login):
-        self.browser.find_element(By.ID, "add-to-cart-sauce-labs-backpack").click()
-        count = self.browser.find_element(By.CLASS_NAME, 'shopping_cart_badge').text
-        assert count in "1"
-        remove_button = self.browser.find_element(By.ID,"remove-sauce-labs-backpack").text
-        assert "REMOVE" in remove_button
-
-
-
-
+        self.browser.find_element(By.ID, "shopping_cart_container").click()
+        self.browser.find_element(By.ID, "remove-sauce-labs-backpack").click
