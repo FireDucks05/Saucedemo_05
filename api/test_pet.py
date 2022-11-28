@@ -60,6 +60,8 @@ class TestUserAPi:
 
 class TestPetUserAPi:
     url = 'https://petstore.swagger.io/v2/pet/'
+    global id
+    id = 12
     @pytest.mark.parametrize(
         "status", ["available", "pending", "sold"],
     )
@@ -68,11 +70,43 @@ class TestPetUserAPi:
         assert response.status_code == HTTPStatus.OK, 'wrong status code'
         print(response.raise_for_status())
 
-
-    @pytest.mark.parametrize(
-        "id", [0, 1, 8],
-    )
-    def test_find_by_id(self, id):
-        response = requests.get(f'{self.url}pet/{id}')
+    def test_add_new_pet(self):
+        # id = '12'
+        response = requests.post(f'{self.url}{id}')
         assert response.status_code == HTTPStatus.OK, 'wrong status code'
         print(response.raise_for_status())
+
+    @pytest.mark.parametrize(
+        "id", [10, 8, id],
+    )
+    def test_find_by_id(self, id):
+        response = requests.get(f'{self.url}{id}')
+        assert response.status_code == HTTPStatus.OK, 'wrong status code'
+        print(response.raise_for_status())
+
+    def test_update_existing_pet(self):
+        data = {
+              "id": id,
+              "category": {
+                "id": 0,
+                "name": "string"
+              },
+              "name": "doggie",
+              "photoUrls": [
+                "string"
+              ],
+              "tags": [
+                {
+                  "id": 0,
+                  "name": "string"
+                }
+              ],
+              "status": "available"
+            }
+        response = requests.put(f'{self.url}', json=data)
+        assert response.status_code == HTTPStatus.OK, 'wrong status code'
+        print(response.raise_for_status())
+
+    def test_upload_img(self):
+        pass
+        #TODO: img to upload find out
