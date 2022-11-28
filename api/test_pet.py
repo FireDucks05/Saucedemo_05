@@ -1,5 +1,6 @@
 import requests
 from http import HTTPStatus
+import pytest
 
 
 class TestUserAPi:
@@ -57,5 +58,21 @@ class TestUserAPi:
         print(response.raise_for_status())
 
 
-class PetUserAPi:
-    url = 'https://petstore.swagger.io/v2/'
+class TestPetUserAPi:
+    url = 'https://petstore.swagger.io/v2/pet/'
+    @pytest.mark.parametrize(
+        "status", ["available", "pending", "sold"],
+    )
+    def test_find_status(self, status):
+        response = requests.get(f'{self.url}findByStatus?status={status}')
+        assert response.status_code == HTTPStatus.OK, 'wrong status code'
+        print(response.raise_for_status())
+
+
+    @pytest.mark.parametrize(
+        "id", [0, 1, 8],
+    )
+    def test_find_by_id(self, id):
+        response = requests.get(f'{self.url}pet/{id}')
+        assert response.status_code == HTTPStatus.OK, 'wrong status code'
+        print(response.raise_for_status())
