@@ -61,7 +61,7 @@ class TestUserAPi:
 class TestPetUserAPi:
     url = 'https://petstore.swagger.io/v2/pet/'
     global id
-    id = 12
+    id = 12546456
 
     @pytest.mark.parametrize(
         "status", ["available", "pending", "sold"],
@@ -70,10 +70,31 @@ class TestPetUserAPi:
         response = requests.get(f'{self.url}findByStatus?status={status}')
         assert response.status_code == HTTPStatus.OK, 'wrong status code'
         print(response.raise_for_status())
+        l = []
+        for i in response.json():
+            l.append(i['id'])
+        print(l[:3])
 
     def test_add_new_pet(self):
-        # id = '12'
-        response = requests.post(f'{self.url}{id}')
+        data = {
+            "id": id,
+            "category": {
+                "id": 0,
+                "name": "string"
+            },
+            "name": "doggie",
+            "photoUrls": [
+                "string"
+            ],
+            "tags": [
+                {
+                    "id": 0,
+                    "name": "string"
+                }
+            ],
+            "status": "available"
+        }
+        response = requests.post(f'{self.url}',json=data)
         assert response.status_code == HTTPStatus.OK, 'wrong status code'
         print(response.raise_for_status())
 
@@ -108,9 +129,10 @@ class TestPetUserAPi:
         assert response.status_code == HTTPStatus.OK, 'wrong status code'
         print(response.raise_for_status())
 
+    @pytest.mark.xfail
     def test_upload_img(self):
         data = {"id": id} #TODO: find how to upload image
-        response = requests.get(f'{self.url}{id}/uploadImage', json=data)
+        response = requests.post(f'{self.url}{id}/uploadImage', json=data)
         assert response.status_code == HTTPStatus.OK, 'wrong status code'
 
     def test_delete_pet(self):
