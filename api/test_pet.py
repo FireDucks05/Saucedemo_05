@@ -62,6 +62,7 @@ class TestPetUserAPi:
     url = 'https://petstore.swagger.io/v2/pet/'
     global id
     id = 12
+
     @pytest.mark.parametrize(
         "status", ["available", "pending", "sold"],
     )
@@ -86,27 +87,32 @@ class TestPetUserAPi:
 
     def test_update_existing_pet(self):
         data = {
-              "id": id,
-              "category": {
+            "id": id,
+            "category": {
                 "id": 0,
                 "name": "string"
-              },
-              "name": "doggie",
-              "photoUrls": [
+            },
+            "name": "doggie",
+            "photoUrls": [
                 "string"
-              ],
-              "tags": [
+            ],
+            "tags": [
                 {
-                  "id": 0,
-                  "name": "string"
+                    "id": 0,
+                    "name": "string"
                 }
-              ],
-              "status": "available"
-            }
+            ],
+            "status": "available"
+        }
         response = requests.put(f'{self.url}', json=data)
         assert response.status_code == HTTPStatus.OK, 'wrong status code'
         print(response.raise_for_status())
 
     def test_upload_img(self):
-        pass
-        #TODO: img to upload find out
+        data = {"id": id} #TODO: find how to upload image
+        response = requests.get(f'{self.url}{id}/uploadImage', json=data)
+        assert response.status_code == HTTPStatus.OK, 'wrong status code'
+
+    def test_delete_pet(self):
+        response = requests.delete(f'{self.url}{id}')
+        assert response.status_code == HTTPStatus.OK, 'wrong status code'
