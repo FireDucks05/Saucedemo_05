@@ -5,8 +5,7 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 
 
-
-@pytest.fixture(autouse=True)
+@pytest.fixture()
 def browser(request, headless):
     options = webdriver.ChromeOptions()
     options.headless = headless
@@ -18,7 +17,7 @@ def browser(request, headless):
     browser.quit()
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture(scope="session")
 def url():
     url = "https://www.saucedemo.com/"
     if not url:
@@ -43,5 +42,8 @@ def pytest_addoption(parser):
 def headless(request):
     return request.config.getoption("--headless")
 
-
-
+# @pytest.fixture()
+# def login(browser, url):
+#     browser.get(url)
+#     browser.add_cookie({"name": "session-username", "value": 'standard_user'})
+#     browser.get(url)
