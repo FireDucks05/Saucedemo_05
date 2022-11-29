@@ -1,6 +1,8 @@
 import requests
 from http import HTTPStatus
 import pytest
+import json
+import jsonpath
 
 
 class TestUserAPi:
@@ -58,7 +60,7 @@ class TestUserAPi:
         print(response.raise_for_status())
 
 
-class TestPetUserAPi:
+class TestPetAPi:
     url = 'https://petstore.swagger.io/v2/pet/'
     global id
     id = 12546456
@@ -138,3 +140,24 @@ class TestPetUserAPi:
     def test_delete_pet(self):
         response = requests.delete(f'{self.url}{id}')
         assert response.status_code == HTTPStatus.OK, 'wrong status code'
+
+
+class TestStoreAPi:
+    url = 'https://petstore.swagger.io/v2/store/'
+    global my_id
+    my_id = 12095420
+
+    def test_add_new_pet(self):
+        data = {
+              "id": 3945903,
+              "petId": 0,
+              "quantity": 0,
+              "shipDate": "2022-11-28T21:12:39.007Z",
+              "status": "placed",
+              "complete": True
+            }
+        response = requests.post(f'{self.url}order',json=data)
+        assert response.status_code == HTTPStatus.OK, 'wrong status code'
+        print(response.raise_for_status())
+        responseJson = json.loads(response.text)
+        assert jsonpath.jsonpath(responseJson, '$.id')
