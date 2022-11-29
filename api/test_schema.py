@@ -37,6 +37,7 @@ class TestValidateAPi:
         response = requests.get(f'{self.url}inventory')
         assert response.status_code == HTTPStatus.OK, 'wrong status code'
         jsonData = response.json()
+        print(jsonData)
         # assert validate(instance=jsonData, schema=schema1)
         try:
             validate(instance=jsonData, schema=schema1)

@@ -96,7 +96,7 @@ class TestPetAPi:
             ],
             "status": "available"
         }
-        response = requests.post(f'{self.url}',json=data)
+        response = requests.post(f'{self.url}', json=data)
         assert response.status_code == HTTPStatus.OK, 'wrong status code'
         print(response.raise_for_status())
 
@@ -133,7 +133,7 @@ class TestPetAPi:
 
     @pytest.mark.xfail
     def test_upload_img(self):
-        data = {"id": id} #TODO: find how to upload image
+        data = {"id": id}  # TODO: find how to upload image
         response = requests.post(f'{self.url}{id}/uploadImage', json=data)
         assert response.status_code == HTTPStatus.OK, 'wrong status code'
 
@@ -149,14 +149,14 @@ class TestStoreAPi:
 
     def test_add_new_pet(self):
         data = {
-              "id": 3945903,
-              "petId": 0,
-              "quantity": 0,
-              "shipDate": "2022-11-28T21:12:39.007Z",
-              "status": "placed",
-              "complete": True
-            }
-        response = requests.post(f'{self.url}order',json=data)
+            "id": 3945903,
+            "petId": 0,
+            "quantity": 0,
+            "shipDate": "2022-11-28T21:12:39.007Z",
+            "status": "placed",
+            "complete": True
+        }
+        response = requests.post(f'{self.url}order', json=data)
         assert response.status_code == HTTPStatus.OK, 'wrong status code'
         print(response.raise_for_status())
         responseJson = json.loads(response.text)
