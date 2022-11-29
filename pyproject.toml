@@ -20,6 +20,7 @@ pytest-failed-screenshot = {git = "https://github.com/demmi/pytest-failed-screen
 faker = "^15.3.3"
 jsonpath = "^0.82"
 jsonpath-ng = "^1.5.3"
+jsonschema = "^4.17.1"
 
 
 [build-system]
