@@ -5,7 +5,7 @@ import jsonschema
 from jsonschema import validate
 
 
-class TestStoreAPi:
+class TestValidateAPi:
     url = 'https://petstore.swagger.io/v2/store/'
 
     def test_get_inventory(self):
