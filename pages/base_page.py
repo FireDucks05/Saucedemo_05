@@ -124,7 +124,7 @@ class BasePage:
         return self.wait_until_clickable(self.FACEBOOK).click()
 
     def facebook_is_open(self):
-        assert self.wait_for_url_to_be('https://www.linkedin.com/company/sauce-labs/?original_referer=')
+        assert self.page_title_is('Sauce Labs | Facebook')
 
     def switch_to_next_tab(self):
         try:
