@@ -32,8 +32,8 @@ class BasePage:
         try:
             WebDriverWait(self.browser, timeout).until(ec.url_to_be(url))
             return True
-        except Exception as e:
-            self.LOGGER.error(f"Exception: {e}")
+        except Exception as error:
+            self.LOGGER.error(f"Exception: {error}")
 
     def page_title_is(self, title: str, timeout: int = 5) -> bool:
         try:
@@ -124,7 +124,7 @@ class BasePage:
         return self.wait_until_clickable(self.FACEBOOK).click()
 
     def facebook_is_open(self):
-        assert self.wait_for_url_to_be('https://www.facebook.com/saucelabs')
+        assert self.wait_for_url_to_be('https://www.linkedin.com/company/sauce-labs/?original_referer=')
 
     def switch_to_next_tab(self):
         try:

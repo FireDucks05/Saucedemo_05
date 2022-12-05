@@ -68,3 +68,8 @@ class TestWordsAPI:
         except jsonschema.exceptions.ValidationError as err:
             print(err)
             err = "Given JSON data is InValid"
+
+def test_new():
+    response = requests.get('https://reqres.in/api/users')
+    assert response.status_code == 200
+    print(response.json())

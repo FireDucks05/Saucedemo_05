@@ -42,8 +42,10 @@ def pytest_addoption(parser):
 def headless(request):
     return request.config.getoption("--headless")
 
-# @pytest.fixture()
-# def login(browser, url):
-#     browser.get(url)
-#     browser.add_cookie({"name": "session-username", "value": 'standard_user'})
-#     browser.get(url)
+
+@pytest.fixture(scope="session")
+def base_url():
+    base_url = "https://rs-language-api.herokuapp.com/"
+    if not base_url:
+        raise Exception("Wrong environment")
+    return base_url

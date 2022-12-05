@@ -5,6 +5,7 @@ import jsonschema
 from jsonschema import validate
 
 
+@pytest.mark.api
 class TestValidateAPi:
     url = 'https://petstore.swagger.io/v2/store/'
 
