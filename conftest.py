@@ -1,8 +1,10 @@
 import pytest
 import time
 from selenium import webdriver
+from pages import login_page
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
+
 
 @pytest.fixture(scope="function")
 def browser():
@@ -22,3 +24,6 @@ def login(browser):
     time.sleep(2)
     browser.find_element(By.ID, "logout_sidebar_link").click()
     browser.quit()
+
+
+
