@@ -16,7 +16,7 @@ class LoginPage:
     def getpassword(self):
         return self.browser.find_element(*LoginPage.password_field)
 
-    def getfield(self):
-        return self.browser.find_element(*LoginPage.login_button)
+    def getloginbutton(self):
+        return self.browser.find_element(*LoginPage.login_button).click()
 
 
