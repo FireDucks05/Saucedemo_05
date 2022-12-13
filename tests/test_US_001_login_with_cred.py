@@ -1,11 +1,14 @@
 import pytest
 from pages.login_page import LoginPage
+from utilities.BaseClass import BaseClass
 
 @pytest.mark.usefixtures("setup")
-class TestLoginPage:
+class TestLoginPage(BaseClass):
 
     def test_001_login(self):
-        loginpage = LoginPage()
+        log = self.getLogger()
+        loginpage = LoginPage(self.browser)
+        log.info("logging in")
         loginpage.getlogin().send_keys('standard_user')
         loginpage.getpassword().send_keys('secret_sauce')
         loginpage.getloginbutton()
