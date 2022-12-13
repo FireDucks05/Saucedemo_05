@@ -1,35 +1,34 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
+# options = webdriver.ChromeOptions()
+# options.add_experimental_option("detach", True)
 driver = None
-
-
-def pytest_addoption(parser):
-    parser.addoption(
-        "--browser_name", action="store", default="chrome"
-    )
 
 
 @pytest.fixture(scope="class")
 def setup(request):
-    global browser
-    browser_name = request.config.getoption("browser_name")
-    if browser_name == "chrome":
-        s = Service("/Users/abloha/selenium/chromedriver")
-        browser = webdriver.Chrome(service=s)
+    global driver
 
-    elif browser_name == "firefox":
-        s = Service("/Users/abloha/selenium/geckodriver")
-        browser = webdriver.Firefox(service=s)
+    options = webdriver.ChromeOptions()
+    options.add_experimental_option("detach", True)
+    driver =webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
-    browser.get("https://www.saucedemo.com/")
-    browser.maximize_window()
-    browser.implicitly_wait(5)
 
-    request.cls.browser = browser
-    yield
-    browser.close()
+    # s = Service("/Users/abloha/selenium/chromedriver")
+    # driver = webdriver.Chrome(service=s)
+
+    driver.get("https://www.saucedemo.com/")
+    #driver.maximize_window()
+    driver.implicitly_wait(5)
+
+    request.cls.driver = driver
+
+    #yield
+    #driver.close()
+
 
 
 
