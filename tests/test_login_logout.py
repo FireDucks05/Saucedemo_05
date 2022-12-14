@@ -1,5 +1,5 @@
 import pytest
-import time
+from conftest import url
 from pages.login_page import HomePage
 from utilities.BaseClass import BaseClass
 
@@ -10,11 +10,7 @@ class TestLoginPage(BaseClass):
         log = self.getLogger()
         loginpage = HomePage(self.driver)
         log.info("logging in")
-
         loginpage.getlogin()
-        # loginpage.getpassword()
-        # loginpage.getloginbutton()
-
         page = "https://www.saucedemo.com/inventory.html"
         assert page == "https://www.saucedemo.com/inventory.html"
 
@@ -25,6 +21,4 @@ class TestLoginPage(BaseClass):
         log.info("logging out")
         loginpage.getlogin()
         loginpage.getlogout()
-
-        page = "https://www.saucedemo.com/"
-        assert page == "https://www.saucedemo.com/"
+        assert url == "https://www.saucedemo.com/"

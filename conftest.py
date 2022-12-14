@@ -6,7 +6,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 # options = webdriver.ChromeOptions()
 # options.add_experimental_option("detach", True)
 driver = None
-
+url = "https://www.saucedemo.com/"
 
 @pytest.fixture(scope="class")
 def setup(request):
@@ -15,19 +15,12 @@ def setup(request):
     options = webdriver.ChromeOptions()
     options.add_experimental_option("detach", True)
     driver =webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-
-
-    # s = Service("/Users/abloha/selenium/chromedriver")
-    # driver = webdriver.Chrome(service=s)
-
-    driver.get("https://www.saucedemo.com/")
-    #driver.maximize_window()
+    url = "https://www.saucedemo.com/"
+    driver.get(url)
     driver.implicitly_wait(5)
-
     request.cls.driver = driver
-
-    #yield
-    #driver.close()
+    yield
+    driver.close()
 
 
 
