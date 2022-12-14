@@ -3,22 +3,24 @@ from selenium.webdriver.common.by import By
 from pages.inventory_page import InventoryPage
 from pages.login_logout_page import LoginPage
 from utilities.BaseClass import BaseClass
-from utilities.login_logout import*
+from utilities.login_logout import LoginLogout
+from conftest import url
 
 
 @pytest.mark.usefixtures("setup")
 class TestInventory(BaseClass):
-    @pytest.mark.usefixtures("login_logout")
-    def test_add_items_to_cart(self,login_logout):
-        log = self.getLogger()
 
-        #loginpage = LoginPage(self.browser)
+    def test_add_items_to_cart(self):
+        log = self.getLogger()
+        loginpage = LoginLogout(self.browser)
+        loginpage.login_logout_wrapper()
         inventorypage = InventoryPage(self.browser)
         log.info("adding item to cart")
-        #loginpage.getlogin()
 
         inventorypage.getbackpack()
         assert "1" in inventorypage.get_shopping_cart_badge()
+
+        assert url == "https://www.saucedemo.com/"
 
     def test_002_add_button_changed_to_remove(self, browser):
         browser.find_element(By.ID, "add-to-cart-sauce-labs-backpack").click()
