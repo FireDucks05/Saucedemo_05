@@ -1,15 +1,10 @@
 import pytest
-import time
-from selenium.webdriver.common.by import By
-from conftest import *
+from pages.login_logout_page import LoginPage
+
+class LoginLogout(LoginPage):
+    @pytest.fixture(scope = 'function')
+    def login_logout(self):
+        loginpage = LoginPage(self.browser)
+        loginpage.getlogin()
 
 
-@pytest.fixture(scope="function")
-def login(setup):
-    browser.find_element(By.ID, 'user-name').send_keys('standard_user')
-    browser.find_element(By.ID, 'password').send_keys('secret_sauce')
-    browser.find_element(By.ID, 'login-button').click()
-    yield
-    browser.find_element(By.ID, "react-burger-menu-btn").click()
-    time.sleep(2)
-    browser.find_element(By.ID, "logout_sidebar_link").click()

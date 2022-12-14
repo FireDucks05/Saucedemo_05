@@ -24,7 +24,7 @@ class BaseClass:
 
 
     def verifyLinkPresence(self, text):
-        element = WebDriverWait(self.driver, 10)
+        element = WebDriverWait(self.browser, 10)
         element.until(expected_conditions.presence_of_element_located((By.LINK_TEXT, text)))
 
     def selectOptionByText(self, locator, text): #selecting from dropdown menue, male, female

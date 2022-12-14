@@ -1,6 +1,6 @@
 import pytest
 from conftest import url
-from pages.login_page import HomePage
+from pages.login_logout_page import LoginPage
 from utilities.BaseClass import BaseClass
 
 @pytest.mark.usefixtures("setup")
@@ -8,7 +8,7 @@ class TestLoginPage(BaseClass):
 
     def test_login(self):
         log = self.getLogger()
-        loginpage = HomePage(self.driver)
+        loginpage = LoginPage(self.browser)
         log.info("logging in")
         loginpage.getlogin()
         page = "https://www.saucedemo.com/inventory.html"
@@ -17,7 +17,7 @@ class TestLoginPage(BaseClass):
 
     def test_logout(self):
         log = self.getLogger()
-        loginpage = HomePage(self.driver)
+        loginpage = LoginPage(self.browser)
         log.info("logging out")
         loginpage.getlogin()
         loginpage.getlogout()

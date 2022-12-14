@@ -1,7 +1,7 @@
 import pytest
 import time
 from selenium import webdriver
-from pages import login_page
+from pages import login_logout_page
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager

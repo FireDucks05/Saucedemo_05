@@ -5,22 +5,22 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 # options = webdriver.ChromeOptions()
 # options.add_experimental_option("detach", True)
-driver = None
+browser = None
 url = "https://www.saucedemo.com/"
 
 @pytest.fixture(scope="class")
 def setup(request):
-    global driver
+    global browser
 
     options = webdriver.ChromeOptions()
     options.add_experimental_option("detach", True)
-    driver =webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+    browser =webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     url = "https://www.saucedemo.com/"
-    driver.get(url)
-    driver.implicitly_wait(5)
-    request.cls.driver = driver
+    browser.get(url)
+    browser.implicitly_wait(5)
+    request.cls.browser = browser
     yield
-    driver.close()
+    browser.close()
 
 
 
