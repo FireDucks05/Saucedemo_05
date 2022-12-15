@@ -50,3 +50,7 @@
 2022-12-14 02:16:44,275 :INFO : test_add_items_to_cart :adding item to cart
 2022-12-14 02:17:22,205 :INFO : test_add_items_to_cart :adding item to cart
 2022-12-14 02:19:10,117 :INFO : test_add_items_to_cart :adding item to cart
+2022-12-14 15:54:39,153 :INFO : test_login :logging in
+2022-12-14 16:02:31,178 :INFO : test_logout :logging out
+2022-12-14 22:38:53,594 :INFO : test_add_items_to_cart :adding item to cart
+2022-12-14 22:46:39,029 :INFO : test_add_items_to_cart :adding item to cart

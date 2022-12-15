@@ -1,21 +1,23 @@
 import pytest
 from selenium.webdriver.common.by import By
 from pages.inventory_page import InventoryPage
+from utilities import login_logout
 from utilities.BaseClass import BaseClass
-from utilities.login_logout import LoginLogout
+from utilities.login_logout import *
 
 
 @pytest.mark.usefixtures("setup")
 class TestInventory(BaseClass):
 
-    def test_add_items_to_cart(self,login_logout_wrapper):
+    def test_add_items_to_cart(self,utilities/login_logout.py):
         log = self.getLogger()
         loginpage = LoginLogout(self.browser)
-        loginpage.login_logout_wrapper()
+        loginpage.login_logout_general()
         inventorypage = InventoryPage(self.browser)
         log.info("adding item to cart")
         inventorypage.getbackpack()
         assert "1" in inventorypage.get_shopping_cart_badge()
+        #loginpage.getlogout()
 
 
     def test_002_add_button_changed_to_remove(self, browser):

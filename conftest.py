@@ -1,30 +1,23 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
-# options = webdriver.ChromeOptions()
-# options.add_experimental_option("detach", True)
 browser = None
-url = "https://www.saucedemo.com/"
+homepage = "https://www.saucedemo.com/"
 
 @pytest.fixture(scope="class")
 def setup(request):
     global browser
 
     options = webdriver.ChromeOptions()
-    options.add_experimental_option("detach", True)
-    browser =webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-    url = "https://www.saucedemo.com/"
+    options.headless = False
+    browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+    url = homepage
     browser.get(url)
     browser.implicitly_wait(5)
     request.cls.browser = browser
     yield
     browser.close()
-
-
-
-
 
 
 

@@ -1,5 +1,5 @@
 import pytest
-from conftest import url
+from conftest import homepage
 from pages.login_logout_page import LoginPage
 from utilities.BaseClass import BaseClass
 
@@ -21,4 +21,4 @@ class TestLoginPage(BaseClass):
         log.info("logging out")
         loginpage.getlogin()
         loginpage.getlogout()
-        assert url == "https://www.saucedemo.com/"
+        assert homepage == "https://www.saucedemo.com/"
