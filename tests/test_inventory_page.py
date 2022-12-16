@@ -9,10 +9,10 @@ from utilities.login_logout import *
 @pytest.mark.usefixtures("setup")
 class TestInventory(BaseClass):
 
-    def test_add_items_to_cart(self,utilities/login_logout.py):
+    def test_add_items_to_cart(self):
         log = self.getLogger()
-        loginpage = LoginLogout(self.browser)
-        loginpage.login_logout_general()
+        #loginpage = LoginLogout(self.browser)
+        #loginpage.login_logout_general()
         inventorypage = InventoryPage(self.browser)
         log.info("adding item to cart")
         inventorypage.getbackpack()
