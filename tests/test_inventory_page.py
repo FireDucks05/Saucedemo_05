@@ -1,9 +1,11 @@
+import time
 import pytest
-from selenium.webdriver.common.by import By
 from pages.inventory_page import InventoryPage
-from utilities import login_logout
 from utilities.BaseClass import BaseClass
-from utilities.login_logout import *
+from selenium.webdriver.support.select import Select
+from utilities.inventory import sorted_Z_to_A, sorted_A_to_Z, sorted_low_to_high, sorted_high_to_low
+
+
 
 
 @pytest.mark.usefixtures("setup")
@@ -11,28 +13,98 @@ class TestInventory(BaseClass):
 
     def test_add_items_to_cart(self):
         log = self.getLogger()
-        #loginpage = LoginLogout(self.browser)
-        #loginpage.login_logout_general()
-        inventorypage = InventoryPage(self.browser)
+        inventory_page = InventoryPage(self.browser)
         log.info("adding item to cart")
-        inventorypage.getbackpack()
-        assert "1" in inventorypage.get_shopping_cart_badge()
-        #loginpage.getlogout()
+        inventory_page.getbackpack()
+        assert "1" in inventory_page.getshopping_cart_badge()
+        inventory_page.getremove_button()
 
 
-    def test_002_add_button_changed_to_remove(self, browser):
-        browser.find_element(By.ID, "add-to-cart-sauce-labs-backpack").click()
-        count = browser.find_element(By.CLASS_NAME, 'shopping_cart_badge').text
-        assert count in "1"
-        remove_button = browser.find_element(By.ID, "remove-sauce-labs-backpack").text
-        assert "REMOVE" in remove_button
+    def test_add_button_changed_to_remove(self):
+        log = self.getLogger()
+        inventory_page = InventoryPage(self.browser)
+        log.info("adding item to cart")
+        inventory_page.getbackpack()
+        log.info("checking if quantity change cart badge")
+        assert "1" in inventory_page.getshopping_cart_badge()
+        inventory_page.getremove_button_text()
+        log.info("checking if add button changed to remove")
+        assert "REMOVE" in inventory_page.getremove_button_text()
+        inventory_page.getremove_button()
 
-# class ProductPage:
-#
-#     def __int__(self, browser):
-#         self.browser = browser
-#
-#     shopping_cart = (By.CLASS_NAME, 'shopping_cart_link')
-#
-#     def getshopping_cart(self):
-#         return self.browser.find_element(*ProductPage.shopping_cart)
+    def test_remove_items_from_cart(self):
+        log = self.getLogger()
+        inventory_page = InventoryPage(self.browser)
+        log.info("adding item to cart")
+        inventory_page.getbackpack()
+        time.sleep(2)
+        log.info("checking if quantity change cart badge")
+        assert "1" in inventory_page.getshopping_cart_badge()
+        inventory_page.getremove_button()
+        log.info("checking if remove button changed to 'ADD TO CART'")
+        assert "ADD TO CART" in inventory_page.getbackpack_button_text()
+
+
+    def test_sorting_inventory_sorting_Z_to_A(self):
+        log = self.getLogger()
+        inventory_page = InventoryPage(self.browser)
+        log.info("sorting inventory Z to A")
+        dropdown = Select(inventory_page.getdrop_down_menu())
+        dropdown.select_by_visible_text("Name (Z to A)")
+        ALL_PRODUCTS = inventory_page.getall_products()
+        sorted_list = []
+        for option in ALL_PRODUCTS:
+            sorted_list.append(option.text)
+
+        log.info("Verifying that inventory sorted to Z to A")
+        assert sorted_list == sorted_Z_to_A
+
+    def test_sorting_inventory_low_to_high(self):
+        log = self.getLogger()
+        inventory_page = InventoryPage(self.browser)
+        log.info("sorting inventory low to high")
+        dropdown = Select(inventory_page.getdrop_down_menu())
+        dropdown.select_by_visible_text("Price (low to high)")
+        ALL_PRODUCTS = inventory_page.getall_products()
+        sorted_list = []
+        for option in ALL_PRODUCTS:
+            sorted_list.append(option.text)
+
+        log.info("Verifying that inventory sorted low to high")
+        assert sorted_list == sorted_low_to_high
+
+    def test_sorting_inventory_high_to_low(self):
+        log = self.getLogger()
+        inventory_page = InventoryPage(self.browser)
+        log.info("sorting inventory high to low")
+        dropdown = Select(inventory_page.getdrop_down_menu())
+        dropdown.select_by_visible_text("Price (high to low)")
+        ALL_PRODUCTS = inventory_page.getall_products()
+        sorted_list = []
+        for option in ALL_PRODUCTS:
+            sorted_list.append(option.text)
+
+        log.info("Verifying that inventory sorted high to low")
+        assert sorted_list == sorted_high_to_low
+
+    def test_verification_desc(self):
+        log = self.getLogger()
+        inventory_page = InventoryPage(self.browser)
+        log.info("adding inventory description into list")
+        products = inventory_page.getall_products()
+        for product in products:
+            productName = inventory_page.get_all_products_text()
+
+            if productName == "Sauce Labs Backpack":
+                product.inventorypage.get_add_products()
+        lst = []
+        pr = inventory_page.get_item_description()
+        for itemss in pr:
+            lst.append(itemss.text)
+        print(lst)
+
+
+
+
+
+

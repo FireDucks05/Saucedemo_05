@@ -1,6 +1,6 @@
 import pytest
 from pages.login_logout_page import LoginPage
-
+@pytest.mark.usefixtures("setup")
 class LoginLogout(LoginPage):
     @pytest.fixture(scope = 'function')
     def login_logout_general(self):
@@ -10,3 +10,19 @@ class LoginLogout(LoginPage):
         loginpage.getlogin()
 
 
+# import inspect
+# import logging
+# import pytest
+#
+# @pytest.mark.usefixtures("setup")
+# class BaseClass:
+#     def getLogger(self):
+#         loggerName = inspect.stack()[1][3]
+#         logger = logging.getLogger(loggerName)
+#         fileHandler = logging.FileHandler('logfile.log')
+#         formatter = logging.Formatter("%(asctime)s :%(levelname)s : %(name)s :%(message)s")
+#         fileHandler.setFormatter(formatter)
+#
+#         logger.addHandler(fileHandler)
+#         logger.setLevel(logging.DEBUG)
+#         return logger

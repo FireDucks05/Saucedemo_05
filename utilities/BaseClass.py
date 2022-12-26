@@ -1,10 +1,7 @@
 import inspect
 import logging
 import pytest
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.select import Select
-from selenium.webdriver.support.wait import WebDriverWait
+
 
 
 @pytest.mark.usefixtures("setup")
@@ -23,10 +20,3 @@ class BaseClass:
         return logger
 
 
-    def verifyLinkPresence(self, text):
-        element = WebDriverWait(self.browser, 10)
-        element.until(expected_conditions.presence_of_element_located((By.LINK_TEXT, text)))
-
-    def selectOptionByText(self, locator, text): #selecting from dropdown menue, male, female
-        sel = Select(locator)
-        sel.select_by_visible_text(text)
