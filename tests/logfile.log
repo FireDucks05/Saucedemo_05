@@ -217,3 +217,34 @@
 2022-12-26 14:43:39,354 :INFO : test_complete_check_out :Entering customer's information
 2022-12-26 14:44:26,345 :INFO : test_complete_check_out :Entering customer's information
 2022-12-26 14:45:19,375 :INFO : test_complete_check_out :Entering customer's information
+2022-12-27 09:40:14,539 :INFO : test_cart_item_desc_verification :verifying item description
+2022-12-27 09:41:47,896 :INFO : test_cart_item_desc_verification :verifying item description
+2022-12-27 09:41:51,650 :INFO : test_checkout_button :verifying checkout button works correctly
+2022-12-27 09:41:54,523 :INFO : test_customer_information :Entering customer's information
+2022-12-27 09:41:57,747 :INFO : test_complete_check_out :Entering customer's information
+2022-12-27 12:24:33,475 :INFO : test_login :logging in
+2022-12-27 12:29:25,336 :INFO : test_e2e :logging in
+2022-12-27 12:29:25,339 :INFO : test_e2e :sorting inventory Z to A
+2022-12-27 12:30:40,374 :INFO : test_e2e :logging in
+2022-12-27 12:30:40,376 :INFO : test_e2e :sorting inventory Z to A
+2022-12-27 12:34:02,657 :INFO : test_e2e :logging in
+2022-12-27 12:34:02,658 :INFO : test_e2e :sorting inventory Z to A
+2022-12-27 12:35:06,015 :INFO : test_e2e :logging in
+2022-12-27 12:35:06,033 :INFO : test_e2e :sorting inventory Z to A
+2022-12-27 12:35:31,431 :INFO : test_e2e :logging in
+2022-12-27 12:35:31,432 :INFO : test_e2e :sorting inventory Z to A
+2022-12-27 12:36:01,740 :INFO : test_e2e :logging in
+2022-12-27 12:36:01,742 :INFO : test_e2e :sorting inventory Z to A
+2022-12-27 12:37:58,512 :INFO : test_e2e :logging in
+2022-12-27 12:37:58,513 :INFO : test_e2e :sorting inventory Z to A
+2022-12-27 12:38:21,869 :INFO : test_e2e :logging in
+2022-12-27 12:38:21,870 :INFO : test_e2e :sorting inventory Z to A
+2022-12-27 12:38:49,184 :INFO : test_e2e :logging in
+2022-12-27 12:38:49,185 :INFO : test_e2e :sorting inventory Z to A
+2022-12-27 12:40:45,493 :INFO : test_e2e :logging in
+2022-12-27 12:40:45,495 :INFO : test_e2e :sorting inventory Z to A
+2022-12-27 12:40:46,323 :INFO : test_e2e :Entering customer's information
+2022-12-27 12:42:34,578 :INFO : test_e2e :sorting inventory Z to A
+2022-12-27 12:42:35,249 :INFO : test_e2e :Adding backpack into cart
+2022-12-27 12:42:35,612 :INFO : test_e2e :Entering customer's information
+2022-12-27 12:42:36,059 :INFO : test_e2e :Verifying that order was submitted successfully

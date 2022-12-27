@@ -1,24 +1,38 @@
+
 import pytest
-import time
-from selenium import webdriver
-from pages import login_logout_page
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+from utilities.BaseClass import BaseClass
+from pages.inventory_page import InventoryPage
+from pages.shopping_cart_page import ShoppingCartPage
+from selenium.webdriver.support.select import Select
 
-s = Service ("/Users/abloha/selenium/chromedriver")
-browser=webdriver.Chrome(service =s)
-browser.get("https://www.saucedemo.com/")
 
-browser.find_element(By.ID, 'user-name').send_keys('standard_user')
-browser.find_element(By.ID, 'password').send_keys('secret_sauce')
-browser.find_element(By.ID, 'login-button').click()
+@pytest.mark.usefixtures("setup")
+class TestLoginPage(BaseClass):
 
-products = browser.find_elements(By.LINK_TEXT,'/html/body/div/div/div/div[2]/div/div/div')
+    def test_e2e(self):
+        log = self.getLogger()
+        inventory_page = InventoryPage(self.browser)
+        cart_page = ShoppingCartPage(self.browser)
 
-for product in products:
-    productName = product.find_element(By.XPATH, '/html/body/div/div/div/div[2]/div/div/div/div[1]/div[2]/div[1]/a/div').text
-    if productName == "Sauce Labs Bike Light":
-        product.find_element(By.XPATH, "/html/body/div/div/div/div[2]/div/div/div/div[2]/div[2]/div[2]/div").click()
-        print(product)
+        log.info("sorting inventory Z to A")
+        dropdown = Select(inventory_page.getdrop_down_menu())
+        dropdown.select_by_visible_text("Name (Z to A)")
+        ALL_PRODUCTS = inventory_page.getall_products()
+        sorted_list = []
+        for option in ALL_PRODUCTS:
+            sorted_list.append(option.text)
+        log.info("Adding backpack into cart")
+        inventory_page.getbackpack()
+        inventory_page.getshopping_cart()
 
+        cart_page.get_checkout_button()
+
+        log.info("Entering customer's information")
+        cart_page.customer_fist_name().send_keys("Anton")
+        cart_page.customer_last_name().send_keys("Vasya")
+        cart_page.customer_zip_code().send_keys("95117")
+
+        cart_page.get_continue_button()
+        cart_page.get_finish_button()
+        log.info("Verifying that order was submitted successfully")
+        assert cart_page.get_thank_you_note() == "THANK YOU FOR YOUR ORDER"
