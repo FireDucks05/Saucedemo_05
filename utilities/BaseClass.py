@@ -1,11 +1,13 @@
 import inspect
 import logging
 import pytest
-
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.select import Select
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 @pytest.mark.usefixtures("setup")
-
 class BaseClass:
 
     def getLogger(self):
@@ -19,4 +21,6 @@ class BaseClass:
         logger.setLevel(logging.DEBUG)
         return logger
 
-
+    def menu_present(self, locator):
+        element = WebDriverWait(self.browser, 10)
+        element.until(EC.presence_of_element_located(locator))

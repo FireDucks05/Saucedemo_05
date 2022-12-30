@@ -1,4 +1,4 @@
-import time
+#import time
 import pytest
 from pages.inventory_page import InventoryPage
 from utilities.BaseClass import BaseClass
@@ -37,7 +37,6 @@ class TestInventory(BaseClass):
         inventory_page = InventoryPage(self.browser)
         log.info("adding item to cart")
         inventory_page.getbackpack()
-        time.sleep(2)
         log.info("checking if quantity change cart badge")
         assert "1" in inventory_page.getshopping_cart_badge()
         inventory_page.getremove_button()
