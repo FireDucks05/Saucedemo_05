@@ -15,7 +15,7 @@ def setup(request):
     global browser
 
     options = webdriver.ChromeOptions()
-    options.headless = False
+    options.headless = True
     browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
     url = homepage
     browser.get(url)
