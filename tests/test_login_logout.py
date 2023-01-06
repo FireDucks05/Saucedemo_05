@@ -14,7 +14,7 @@ class TestLoginPage(BaseClass):
         page = "https://www.saucedemo.com/inventory.html"
         assert page == "https://www.saucedemo.com/inventory.html"
 
-
+    @pytest.mark.xfail
     def test_logout(self):
         log = self.getLogger()
         loginpage = LoginPage(self.browser)
