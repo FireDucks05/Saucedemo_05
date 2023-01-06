@@ -36,6 +36,6 @@ def login(setup):
     browser.find_element(*LoginPage.logout_button).click()
 
 
-
-def pytest_html_report_title(report):
-    report.title = "Tony B"
+#
+# def pytest_html_report_title(report):
+#     report.title = "Tony B"

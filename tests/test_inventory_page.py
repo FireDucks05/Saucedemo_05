@@ -1,4 +1,4 @@
-#import time
+import allure
 import pytest
 from pages.inventory_page import InventoryPage
 from utilities.BaseClass import BaseClass
@@ -10,11 +10,10 @@ from utilities.inventory import sorted_Z_to_A, sorted_A_to_Z, sorted_low_to_high
 
 @pytest.mark.usefixtures("setup")
 class TestInventory(BaseClass):
-
+    @allure.story("Adding items to cart")
     def test_add_items_to_cart(self):
-        log = self.getLogger()
+
         inventory_page = InventoryPage(self.browser)
-        log.info("adding item to cart")
         inventory_page.getbackpack()
         assert "1" in inventory_page.getshopping_cart_badge()
         inventory_page.getremove_button()
@@ -100,7 +99,7 @@ class TestInventory(BaseClass):
         pr = inventory_page.get_item_description()
         for itemss in pr:
             lst.append(itemss.text)
-        print(lst)
+
 
 
 
