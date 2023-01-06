@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "saucedemo-05"
+version = "0.1.0"
+description = ""
+authors = ["akioikeda <principewar@live.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+selenium = "^4.5.0"
+webdriver-manager = "^3.8.4"
+black = "^22.10.0"
+flake8 = "^5.0.4"
+pytest = "^7.2.0"
+allure-pytest = "^2.11.1"
+pytest-xdist = "^3.0.2"
+pytest-html = "^3.2.0"
+pytest-splinter = "^3.3.2"
+pytest-failed-screenshot = {git = "https://github.com/demmi/pytest-failed-screenshot.git"}
+faker = "^15.3.3"
+jsonpath = "^0.82"
+jsonpath-ng = "^1.5.3"
+jsonschema = "^4.17.1"
+cerberus = "^1.3.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
