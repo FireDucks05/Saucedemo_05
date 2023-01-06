@@ -1,4 +1,4 @@
-
+import allure
 import pytest
 from utilities.BaseClass import BaseClass
 from pages.inventory_page import InventoryPage

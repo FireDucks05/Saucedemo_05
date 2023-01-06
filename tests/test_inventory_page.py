@@ -11,6 +11,7 @@ from utilities.inventory import sorted_Z_to_A, sorted_A_to_Z, sorted_low_to_high
 @pytest.mark.usefixtures("setup")
 class TestInventory(BaseClass):
     @allure.story("Adding items to cart")
+    @allure.title("Successfully purchase")
     def test_add_items_to_cart(self):
 
         inventory_page = InventoryPage(self.browser)
