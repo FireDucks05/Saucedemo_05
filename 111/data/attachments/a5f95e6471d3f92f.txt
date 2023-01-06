@@ -1,0 +1,2 @@
+INFO     test_sorting_inventory_low_to_high:test_inventory_page.py:64 sorting inventory low to high
+INFO     test_sorting_inventory_low_to_high:test_inventory_page.py:72 Verifying that inventory sorted low to high

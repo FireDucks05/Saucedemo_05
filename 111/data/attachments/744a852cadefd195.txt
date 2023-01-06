@@ -1,0 +1,1 @@
+INFO     test_verification_desc:test_inventory_page.py:92 adding inventory description into list

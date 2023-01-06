@@ -1,0 +1,1 @@
+INFO     test_cart_item_desc_verification:test_shopping_cart_page.py:15 verifying item description
