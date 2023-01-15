@@ -1,0 +1,4 @@
+INFO     test_e2e:test_e2e.py:17 sorting inventory Z to A
+INFO     test_e2e:test_e2e.py:24 Adding backpack into cart
+INFO     test_e2e:test_e2e.py:30 Entering customer's information
+INFO     test_e2e:test_e2e.py:37 Verifying that order was submitted successfully

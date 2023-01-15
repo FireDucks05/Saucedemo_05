@@ -1,0 +1,1 @@
+INFO     test_login:test_login_logout.py:12 logging in
