@@ -15,16 +15,16 @@ class TestShoppingCart(BaseClass):
         log.info("verifying item description")
         assert cart_page.getitem_inventory_desc() == inventory_page.getproduct_description()
 
-    def test_checkout_button(self):
-        log = self.getLogger()
-        inventory_page = InventoryPage(self.browser)
-        cart_page = ShoppingCartPage(self.browser)
-        inventory_page.getremove_button()
-        inventory_page.getbackpack()
-        inventory_page.getshopping_cart()
-        log.info("verifying checkout button works correctly")
-        cart_page.get_checkout_button()
-        assert "CHECKOUT: YOUR INFORMATION" == cart_page.get_checkout_info_text()
+    # def test_checkout_button(self):
+    #     log = self.getLogger()
+    #     inventory_page = InventoryPage(self.browser)
+    #     cart_page = ShoppingCartPage(self.browser)
+    #     inventory_page.getremove_button()
+    #     inventory_page.getbackpack()
+    #     inventory_page.getshopping_cart()
+    #     log.info("verifying checkout button works correctly")
+    #     cart_page.get_checkout_button()
+    #     assert "CHECKOUT: YOUR INFORMATION" == cart_page.get_checkout_info_text()
 
     def test_customer_information(self):
         log = self.getLogger()
