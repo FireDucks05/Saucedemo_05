@@ -1,0 +1,1 @@
+INFO     test_customer_information:test_shopping_cart_page.py:37 Entering customer's information

@@ -1,0 +1,3 @@
+INFO     test_remove_items_from_cart:test_inventory_page.py:38 adding item to cart
+INFO     test_remove_items_from_cart:test_inventory_page.py:40 checking if quantity change cart badge
+INFO     test_remove_items_from_cart:test_inventory_page.py:43 checking if remove button changed to 'ADD TO CART'

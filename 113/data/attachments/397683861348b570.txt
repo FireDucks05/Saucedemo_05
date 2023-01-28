@@ -1,0 +1,2 @@
+INFO     test_sorting_inventory_sorting_Z_to_A:test_inventory_page.py:50 sorting inventory Z to A
+INFO     test_sorting_inventory_sorting_Z_to_A:test_inventory_page.py:58 Verifying that inventory sorted to Z to A
